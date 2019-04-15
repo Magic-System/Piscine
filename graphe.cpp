@@ -1,5 +1,7 @@
 #include <fstream>
 #include <iostream>
+#include <bitset>
+#include <math.h>
 #include "graphe.h"
 
 Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
@@ -87,6 +89,42 @@ void Graphe::afficher() const
         a->afficherArete();
         std::cout << std::endl;
     }
+}
+
+std::vector<std::string> Graphe::sol_admissible()
+{
+    std::vector<std::bitset<5>> solutions_admissible;
+    std::vector<std::string> solutions;
+
+    for(int i=0; i< pow(2, m_aretes.size()); ++i)
+    {
+        int n=(m_aretes.size())-1;
+        std::bitset<5>temp (std::string ("00000"));
+        int j=i;
+        do{
+            if (j-pow(2, n) < 0)
+            {
+                temp[n] = 0;
+            }
+            else
+            {
+                temp[n] = 1;
+                j = j-pow(2, n);
+            }
+            n--;
+        }while (j > 0);
+        solutions_admissible.push_back(temp);
+    }
+
+    for (auto elem : solutions_admissible)
+    {
+        if (elem.count() == 3)
+        {
+            solutions.push_back(elem.to_string());
+        }
+    }
+
+    return solutions;
 }
 
 Graphe::~Graphe()

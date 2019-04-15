@@ -13,6 +13,7 @@ class Graphe
         Graphe(std::string, std::string);
 
         void afficher() const;
+        std::vector<std::string> sol_admissible();
 
         ~Graphe();
 

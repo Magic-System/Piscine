@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1555354183 source:c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+
+1555344748 source:c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\arete.cpp
+	"arete.h"
+	<iostream>
+
+1555344748 c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\arete.h
+	"sommet.h"
+
+1555352052 c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+
+1555341521 source:c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555344732 source:c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\graphe.cpp
+	<fstream>
+	<iostream>
+	"graphe.h"
+
+1555353709 c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+
