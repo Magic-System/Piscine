@@ -13,7 +13,8 @@ class Graphe
         Graphe(std::string, std::string);
 
         void afficher() const;
-        std::vector<std::string> sol_admissible();
+        void prim(std::string id = "0", int indicePoids = 0) const;
+
 
         ~Graphe();
 

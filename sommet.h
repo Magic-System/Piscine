@@ -15,6 +15,7 @@ class Sommet
         void afficherData() const;
         std::string getId() const;
 
+
         ~Sommet();
 
     protected:

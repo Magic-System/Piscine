@@ -9,7 +9,9 @@ class Arete
         Arete(std::string, Sommet*, Sommet*, std::vector<float>);
 
         void afficherArete()    const;
-        std::string getId() const;
+        std::string getId()    const;
+        Sommet* getSommet(bool i)    const;
+        std::vector<float> getPoids()   const;
 
         ~Arete();
 
