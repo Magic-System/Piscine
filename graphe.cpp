@@ -6,10 +6,16 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
     std::ifstream ifs{nomFichier};
     if (!ifs)
         throw std::runtime_error( "Impossible d'ouvrir en lecture " + nomFichier );
+
+    std::ifstream f_poids{fichierPoids};
+    if (!f_poids)
+        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichierPoids );
+
     int ordre;
     ifs >> ordre;
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture ordre du graphe");
+
     std::string id;
     double x,y;
     //lecture des sommets
@@ -25,6 +31,13 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
         throw std::runtime_error("Probleme lecture taille du graphe");
     std::string id_s1;
     std::string id_s2;
+
+    std::string id_poids;
+    int nb_poids;
+    int t_poids;
+    f_poids >> t_poids;
+    f_poids >> nb_poids;
+
     //lecture des aretes
     for (int i=0; i<taille; ++i){
         //lecture des ids des deux extrémités
@@ -43,39 +56,19 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
                 s2 = elem;
         }
         s1->ajouterVoisin(s2);
-        m_aretes.push_back(new Arete(id, s1, s2));
-    }
-
-    ifs.close();
-    std::ifstream f_poids{fichierPoids};
-    if (!f_poids)
-        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichierPoids );
-
-    int nb_poids;
-    f_poids >> taille;
-    f_poids >> nb_poids;
-
-    for (int i=0; i<taille; ++i)
-    {
-        float p;
         std::vector<float> poids;
-        Arete* a;
-        f_poids >> id;
-        for (auto elem : m_aretes)
-        {
-            if (id == elem->getId())
-                a = elem;
-        }
+
+        float p;
+        f_poids >> id_poids;
 
         for (int i=0; i<nb_poids; ++i)
         {
             f_poids >> p;
             poids.push_back(p);
         }
-        a->initPoids(poids);
 
+        m_aretes.push_back(new Arete(id, s1, s2, poids));
     }
-
 }
 
 void Graphe::afficher() const
