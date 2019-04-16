@@ -13,6 +13,11 @@ class Graphe
         Graphe(std::string, std::string);
 
         void afficher() const;
+        //void prim(std::string id = "0", int indicePoids = 0) const;
+        std::vector<Arete*> prim(std::string id = "0", int indicePoids = 0) const;
+        void afficherPrim(std::vector<Arete*>);
+
+
 
         ~Graphe();
 

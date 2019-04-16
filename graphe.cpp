@@ -1,5 +1,7 @@
 #include <fstream>
 #include <iostream>
+#include <bitset>
+#include <math.h>
 #include "graphe.h"
 
 Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
@@ -87,6 +89,85 @@ void Graphe::afficher() const
         a->afficherArete();
         std::cout << std::endl;
     }
+}
+
+std::vector<Arete*> Graphe::prim(std::string id, int indicePoids) const
+{
+    std::vector<Sommet*> decouverts;
+    std::vector<Arete*> areteParcouru;
+
+    //On ajoute le sommet de depart dans la liste des sommets decouverts
+    for(auto elem : m_sommets)
+        if (elem->getId() == id)
+            decouverts.push_back(elem);
+
+    do{
+        //liste d'arete potentiellement choisie
+        std::vector<Arete*> a;
+
+        //On parcours nos sommets decouverts
+        for (auto s : decouverts)
+            //On parcours la liste des arretes du graphe
+            for (auto sArete : m_aretes)
+                //Si le sommet de depart de l'arete est identique a un sommet decouverts et que le sommet d'arrivé n'est pas decouvert alors on ajoute cette arete a notre liste d'arete potentiellement choisi
+                if (sArete->getSommet(0) == s)
+                {
+                    int i=0;
+                    for (auto elem : decouverts)
+                        if (sArete->getSommet(1) == elem)
+                            i++;
+                    if (i == 0)
+                        a.push_back(sArete);
+                }
+
+
+        Arete* areteSelec;
+        //Valeur tres grande pour comparer les poids des arete potentiellement choisi
+        float poidPrec = 1000000000;
+        //On compare le poids d'indice recu en parametre avec le poid precedent afin de trouver l'arete ayant le plus petit poid
+        for (auto arete : a)
+        {
+            std::vector<float> poids = arete->getPoids();
+            if (poids[indicePoids] <= poidPrec)
+            {
+                poidPrec = poids[indicePoids];
+                areteSelec = arete;
+            }
+        }
+        //L'arete ayant le plus petit poid est ajouté a la liste des aretes parcouru par prim
+        //Le sommet d'arrivé de cette arete est ajouté a la liste des sommets decouverts
+        decouverts.push_back(areteSelec->getSommet(1));
+        areteParcouru.push_back(areteSelec);
+
+    //tant que l'ordre de la liste des sommets decouverts n'est pas le meme que l'ordre du graphe
+    }while(decouverts.size() != m_sommets.size());
+
+    return areteParcouru;
+}
+
+void Graphe::afficherPrim(std::vector<Arete*> a)
+{
+    //On initialise le vector a 0
+    std::vector<float> poidsTot(a[0]->getPoids().size(), 0.0);
+
+    //std::cout << "Prim a partir du Sommet : " << id << ", en fonction du poids d'indice : " << indicePoids << std::endl;
+
+    for (auto elem : a)
+    {
+        //On affiche les arete parcouru par prim
+        elem->afficherArete();
+        //On calcule les poids totaux
+        std::vector<float> p = elem->getPoids();
+        for (unsigned int i=0; i<p.size(); ++i)
+        {
+            poidsTot[i] = poidsTot[i] + p[i];
+        }
+    }
+    //On affiche les poids totaux
+    std::cout << "\n(";
+    for (auto elem : poidsTot)
+        std::cout << elem << ";";
+    std::cout << ")" << std::endl;
 }
 
 Graphe::~Graphe()
