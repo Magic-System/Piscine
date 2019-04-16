@@ -91,7 +91,7 @@ void Graphe::afficher() const
     }
 }
 
-void Graphe::prim(std::string id, int indicePoids) const
+std::vector<Arete*> Graphe::prim(std::string id, int indicePoids) const
 {
     std::vector<Sommet*> decouverts;
     std::vector<Arete*> areteParcouru;
@@ -142,12 +142,17 @@ void Graphe::prim(std::string id, int indicePoids) const
     //tant que l'ordre de la liste des sommets decouverts n'est pas le meme que l'ordre du graphe
     }while(decouverts.size() != m_sommets.size());
 
+    return areteParcouru;
+}
+
+void Graphe::afficherPrim(std::vector<Arete*> a)
+{
     //On initialise le vector a 0
-    std::vector<float> poidsTot(areteParcouru[0]->getPoids().size(), 0.0);
+    std::vector<float> poidsTot(a[0]->getPoids().size(), 0.0);
 
-    std::cout << "Prim a partir du Sommet : " << id << ", en fonction du poids d'indice : " << indicePoids << std::endl;
+    //std::cout << "Prim a partir du Sommet : " << id << ", en fonction du poids d'indice : " << indicePoids << std::endl;
 
-    for (auto elem : areteParcouru)
+    for (auto elem : a)
     {
         //On affiche les arete parcouru par prim
         elem->afficherArete();
@@ -163,8 +168,6 @@ void Graphe::prim(std::string id, int indicePoids) const
     for (auto elem : poidsTot)
         std::cout << elem << ";";
     std::cout << ")" << std::endl;
-
-
 }
 
 Graphe::~Graphe()
