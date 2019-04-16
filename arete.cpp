@@ -1,5 +1,6 @@
 #include "arete.h"
 #include <iostream>
+#include <vector>
 
 Arete::Arete(std::string id, Sommet* s1, Sommet* s2) : m_id{id}, m_sommet1{s1}, m_sommet2{s2}
 {
@@ -10,20 +11,18 @@ std::string Arete::getId()  const
     return m_id;
 }
 
-Sommet* Arete::getSommet1()  const
+Sommet* Arete::getSommet(bool i) const
 {
-    return m_sommet1;
-}
-Sommet* Arete::getSommet2()  const
-{
-    return m_sommet2;
+    if (i == 0)
+        return m_sommet1;
+    else
+        return m_sommet2;
 }
 
-std::vector<float> Arete::getPoids()  const
+std::vector<float> Arete::getPoids()    const
 {
     return m_poids;
 }
-
 
 void Arete::afficherArete() const
 {

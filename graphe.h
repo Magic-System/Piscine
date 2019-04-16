@@ -17,12 +17,14 @@ class Graphe
         void afficher() const;
         void dessinerGraphSVG(Svgfile &svgout) const;
         void dessinerGraph() const;
-        void kruskal(Svgfile &svgout);
 
         int getOrdre() const
         {
           return (int)m_sommets.size();
         }
+        //void prim(std::string id = "0", int indicePoids = 0) const;
+        std::vector<Arete*> prim(std::string id = "0", int indicePoids = 0) const;
+        void afficherPrim(std::vector<Arete*>);
 
         ~Graphe();
 

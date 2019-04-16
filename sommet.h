@@ -21,6 +21,7 @@ class Sommet
         double getx() const;
         double gety() const;
 
+
         ~Sommet();
 
     protected:

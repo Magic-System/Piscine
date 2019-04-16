@@ -6,6 +6,8 @@
 
 
 
+
+
 int main()
 {
     Svgfile svgout("output.svg");
@@ -16,6 +18,9 @@ int main()
     g.kruskal(svgout);
 
 
+
+    g.afficherPrim(g.prim());
+    g.afficherPrim(g.prim("0", 1));
 
     return 0;
 }
