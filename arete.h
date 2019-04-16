@@ -6,10 +6,14 @@ class Arete
 {
     public:
         ///constructeur qui reçoit en params les données du sommet
-        Arete(std::string, Sommet*, Sommet*, std::vector<float>);
+        Arete(std::string, Sommet*, Sommet*);
 
         void afficherArete()    const;
         std::string getId() const;
+        Sommet* getSommet1() const;
+        Sommet* getSommet2() const;
+        std::vector<float> getPoids() const;
+        void initPoids(std::vector<float>);
 
         ~Arete();
 

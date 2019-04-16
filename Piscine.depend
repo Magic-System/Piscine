@@ -1,0 +1,147 @@
+# depslib dependency file v1.0
+1555339874 source:c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+
+1555340825 source:c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\arete.cpp
+	"arete.h"
+	<iostream>
+
+1555340645 c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\arete.h
+	"sommet.h"
+
+1555338257 c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+
+1555338458 source:c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555341015 source:c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\graphe.cpp
+	<fstream>
+	<iostream>
+	"graphe.h"
+
+1555339854 c:\users\daniel\dropbox\ece\info\c++\piscine\projetpiscine\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+
+1555357191 source:c:\users\titig\desktop\programme c++\projetpiscine\arete.cpp
+	"arete.h"
+	<iostream>
+
+1555357191 c:\users\titig\desktop\programme c++\projetpiscine\arete.h
+	"sommet.h"
+
+1555346526 c:\users\titig\desktop\programme c++\projetpiscine\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+
+1555357955 source:c:\users\titig\desktop\programme c++\projetpiscine\graphe.cpp
+	<fstream>
+	<iostream>
+	"graphe.h"
+
+1555348581 c:\users\titig\desktop\programme c++\projetpiscine\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555406827 source:c:\users\titig\desktop\programme c++\projetpiscine\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555346526 source:c:\users\titig\desktop\programme c++\projetpiscine\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555344790 source:c:\users\titig\desktop\programme c++\projetpiscine\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+
+1555344790 c:\users\titig\desktop\programme c++\projetpiscine\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555408919 source:c:\users\titig\projetpiscine\poolproject\arete.cpp
+	"arete.h"
+	<iostream>
+
+1555408919 c:\users\titig\projetpiscine\poolproject\arete.h
+	"sommet.h"
+
+1555410512 c:\users\titig\projetpiscine\poolproject\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+
+1555424305 source:c:\users\titig\projetpiscine\poolproject\graphe.cpp
+	<fstream>
+	<iostream>
+	"graphe.h"
+	<algorithm>
+
+1555416810 c:\users\titig\projetpiscine\poolproject\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555408919 c:\users\titig\projetpiscine\poolproject\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555425598 source:c:\users\titig\projetpiscine\poolproject\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555408919 source:c:\users\titig\projetpiscine\poolproject\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555408919 source:c:\users\titig\projetpiscine\poolproject\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+

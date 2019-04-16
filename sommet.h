@@ -14,6 +14,12 @@ class Sommet
 
         void afficherData() const;
         std::string getId() const;
+        std::string setId(std::string id)
+        {
+            m_id = id;
+        }
+        double getx() const;
+        double gety() const;
 
         ~Sommet();
 
