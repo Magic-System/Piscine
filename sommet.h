@@ -10,12 +10,12 @@ class Sommet
     public:
         ///constructeur qui reçoit en params les données du sommet
         Sommet(std::string,double,double);
-        void ajouterVoisin(const Sommet*);
+        void ajouterVoisin(Sommet*);
 
         void afficherData() const;
         std::string getId() const;
 
-        std::string setId(std::string id)
+        void setId(std::string id)
         {
             m_id = id;
         }
@@ -29,7 +29,7 @@ class Sommet
           return m_y;
         }
 
-        std::vector<const Sommet*> getvoisins()
+        std::vector<Sommet*> getvoisins()
         {
             return m_voisins;
         }
@@ -42,7 +42,7 @@ class Sommet
 
     private:
         /// Voisinage : liste d'adjacence
-        std::vector<const Sommet*> m_voisins;
+        std::vector<Sommet*> m_voisins;
 
         /// Données spécifiques du sommet
         std::string m_id; // Identifiant

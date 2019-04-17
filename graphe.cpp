@@ -158,16 +158,16 @@ void Graphe::kruskal()
     std::cout<<"solution : ("<<poidstotal1<<";"<<poidstotal2<<")";
 }
 
-std::unordered_map<std::string,std::string> Graphe::dijkstra()
+std::unordered_map<Sommet*,Sommet*>  Graphe::dijkstra()
 {
-    std::unordered_map<std::string,std::string> l_pred;
-    std::multimap<float,std::string> decouvert;
-    std::multimap<float,std::string> marque;
+    std::unordered_map<Sommet*,Sommet*> l_pred;
+    std::multimap<float, Sommet*> decouvert;
+    std::multimap<float, Sommet*> marque;
 
     float distancetotal = 0;
 
     Sommet* s = m_sommets.front();
-    marque.insert({distancetotal,s->getId()});
+    marque.insert({distancetotal,s});
 
     while(marque.size() != m_sommets.size())
     {
@@ -175,11 +175,11 @@ std::unordered_map<std::string,std::string> Graphe::dijkstra()
         {
             bool continuer = true;
 
-        std::multimap<float,std::string>::iterator it;
+        std::multimap<float,Sommet*>::iterator it;
 
         for(it = marque.begin();it != marque.end();++it)
             {
-                if(voisin->getId() == (*it).second)
+                if(voisin == (*it).second)
                     continuer = false;
             }
 
@@ -192,12 +192,12 @@ std::unordered_map<std::string,std::string> Graphe::dijkstra()
 
                 distance = distancetotal + sqrt( d1 + d2);
 
-                std::multimap<float,std::string> ::iterator it;
+                std::multimap<float,Sommet*> ::iterator it;
                 bool valider = true;
 
                 for(it = decouvert.begin(); it!= decouvert.end(); ++it)
                 {
-                    if(voisin->getId() == (*it).second)
+                    if(voisin == (*it).second)
                     {
                         if(distance >= (*it).first)
                         {
@@ -208,11 +208,11 @@ std::unordered_map<std::string,std::string> Graphe::dijkstra()
                         {
                             decouvert.erase(it);
 
-                            std::unordered_map<std::string,std::string> ::iterator ite;
+                            std::unordered_map<Sommet*,Sommet*> ::iterator ite;
 
                             for(ite = l_pred.begin(); ite!= l_pred.end(); ++ite)
                             {
-                                if((*ite).second == voisin->getId())
+                                if((*ite).second == voisin)
                                     l_pred.erase(ite);
                             }
                         }
@@ -221,9 +221,8 @@ std::unordered_map<std::string,std::string> Graphe::dijkstra()
 
                 if(valider == true)
                 {
-
-                    decouvert.insert({distance,voisin->getId()});
-                    l_pred.insert({voisin->getId(),s->getId()});
+                    decouvert.insert({distance,voisin});
+                    l_pred.insert({voisin,s});
                 }
                 distance = distancetotal;
             }
@@ -235,7 +234,7 @@ std::unordered_map<std::string,std::string> Graphe::dijkstra()
 
         for(sommet_suivant:m_sommets)
         {
-            if(sommet_suivant->getId() == (*decouvert.begin()).second)
+            if(sommet_suivant == (*decouvert.begin()).second)
                 s = sommet_suivant;
         }
 
@@ -247,19 +246,19 @@ std::unordered_map<std::string,std::string> Graphe::dijkstra()
 
 void Graphe::afficherDijkstra()
 {
-    std::unordered_map<std::string,std::string> l_pred;
+    std::unordered_map<Sommet*, Sommet *> l_pred;
 
      l_pred = dijkstra();
 
         for(auto s:l_pred)
     {
-        std::cout<<s.first<<" <--- ";
-        std::pair<std::string,std::string> pred=s;
+        std::cout<<s.first->getId()<<" <--- ";
+        std::pair<Sommet*,Sommet*> pred=s;
 
-        while(pred.second!= m_sommets.front()->getId())
+        while(pred.second!= m_sommets.front())
         {
             pred=*l_pred.find(pred.second);
-            std::cout<<pred.first<<" <--- ";
+            std::cout<<pred.first->getId()<<" <--- ";
         }
         std::cout<<m_sommets.front()->getId()<<std::endl;
     }

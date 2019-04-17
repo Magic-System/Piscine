@@ -14,7 +14,7 @@ class Graphe
 
         void afficher() const;
         void kruskal();
-       std::unordered_map<std::string,std::string>  dijkstra();
+       std::unordered_map<Sommet*,Sommet*>  dijkstra();
        void afficherDijkstra();
 
         int getOrdre() const
