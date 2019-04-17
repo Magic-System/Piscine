@@ -33,15 +33,6 @@ std::string Sommet::getId() const
     return m_id;
 }
 
-double Sommet::getx() const
-{
-    return m_x;
-}
-
-double Sommet::gety() const
-{
-    return m_y;
-}
 
 Sommet::~Sommet()
 {

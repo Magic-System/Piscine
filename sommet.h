@@ -14,12 +14,26 @@ class Sommet
 
         void afficherData() const;
         std::string getId() const;
-        void setId(std::string id)
+
+        std::string setId(std::string id)
         {
             m_id = id;
         }
-        double getx() const;
-        double gety() const;
+
+        double getx() const
+        {
+          return m_x;
+        }
+         double gety() const
+        {
+          return m_y;
+        }
+
+        std::vector<const Sommet*> getvoisins()
+        {
+            return m_voisins;
+        }
+
 
 
         ~Sommet();
