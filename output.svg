@@ -193,15 +193,6 @@
 <circle cx="400" cy="400" r="15" fill="white" />
 <circle cx="400" cy="400" r="15" fill="none" stroke="black" stroke-width="2" />
 <text x="397.5" y="402.5" fill="purple" >15</text>
-<line x1="600" y1="50" x2="600" y2="250" stroke="black" />
-<line x1="600" y1="250" x2="800" y2="250" stroke="black" />
-<line x1="600" y1="50" x2="595" y2="55" stroke="black" />
-<line x1="600" y1="50" x2="605" y2="55" stroke="black" />
-<line x1="800" y1="250" x2="795" y2="245" stroke="black" />
-<line x1="800" y1="250" x2="795" y2="255" stroke="black" />
-<circle cx="677" cy="196" r="3" fill="green" />
-<text x="560" y="40" fill="black" >cout 1</text>
-<text x="810" y="250" fill="black" >cout 2</text>
 
 
 </svg>
