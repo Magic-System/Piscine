@@ -14,11 +14,13 @@ class Graphe
 
         void afficher() const;
         std::vector<std::vector<bool>> sol_admissible();
+        void frontierePareto(std::vector<std::vector<bool>>)    const;
         //void prim(std::string id = "0", int indicePoids = 0) const;
         std::vector<Arete*> prim(std::string id = "0", int indicePoids = 0) const;
         void afficherPrim(std::vector<Arete*>);
 
-
+        bool rech_connexe(std::vector<bool>) const;
+        std::string parcoursBFS()   const;
 
         ~Graphe();
 

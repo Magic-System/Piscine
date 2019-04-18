@@ -5,14 +5,18 @@
 
 #include <math.h>
 
-
+///Temps bruteforce par graphe :
+///Broadway : 0.1 sec
+///Cubetown : 0.2 sec
+///Triville : 1 sec
+///Manhanttan : 58 sec
 
 int main()
 {
-    //Graphe g{"files/broadway_2.txt", "files/broadway_2_weights_0.txt"};
+    //Graphe g{"files/broadway.txt", "files/broadway_weights_0.txt"};
     //Graphe g{"files/cubetown.txt", "files/cubetown_weights_0.txt"};
-    Graphe g{"files/triville.txt", "files/triville_weights_0.txt"};
-    //Graphe g{"files/manhattan.txt", "files/manhattan_weights_0.txt"};
+    //Graphe g{"files/triville.txt", "files/triville_weights_0.txt"};
+    Graphe g{"files/manhattan.txt", "files/manhattan_weights_0.txt"};
     g.afficher();
 
     //g.afficherPrim(g.prim());

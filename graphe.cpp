@@ -47,8 +47,8 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
         ifs>>id_s1; if(ifs.fail()) throw std::runtime_error("Probleme lecture arete sommet 1");
         ifs>>id_s2; if(ifs.fail()) throw std::runtime_error("Probleme lecture arete sommet 2");
 
-        Sommet* s1;
-        Sommet* s2;
+        Sommet* s1 = nullptr;
+        Sommet* s2 = nullptr;
 
         for (auto elem : m_sommets)
         {
@@ -95,7 +95,7 @@ std::vector<std::vector<bool>> Graphe::sol_admissible()
 {
     unsigned int m = m_aretes.size();
     //Solutions filtré une premiere fois pour garder seulement les solutions utilisant n-1 aretes avec n egal l'ordre du graphe (nb de sommets)
-    std::vector<std::vector<bool>> solutions_temp;
+    //std::vector<std::vector<bool>> solutions_temp;
     //Solutions filtré pour ne garder que les solutions qui ne créee pas de cycle
     std::vector<std::vector<bool>> solutions;
 
@@ -120,40 +120,18 @@ std::vector<std::vector<bool>> Graphe::sol_admissible()
         }
         if (k == m_sommets.size()-1)
         {
-            solutions_temp.push_back(temp);
-            //for (auto elem : temp)
-                //std::cout << elem;
-            //std::cout << std::endl;
+            if (rech_connexe(temp) == true)
+                solutions.push_back(temp);
         }
-    }
-    std::cout << "done  " << solutions_temp.size() << std::endl;
-
-    //On ne garde que les solutions ne creant pas de cycle en verifiant si les aretes selectionnée sont connectés a tout les sommets du graphe
-    for (auto vectBool : solutions_temp)
-    {
-        std::unordered_set<Sommet*> cc;
-        int i=0;
-        for (auto elem : vectBool)
-        {
-            if (elem == 1)
-            {
-                for (auto a : m_aretes)
-                {
-                    if (a->getId() == std::to_string(i))
-                    {
-                        cc.insert(a->getSommet(0));
-                        cc.insert(a->getSommet(1));
-                    }
-                }
-            }
-            i++;
-        }
-        if (cc.size() == m_sommets.size())
-            solutions.push_back(vectBool);
     }
 
     //On retourne les solutions filtre
     return solutions;
+}
+
+void Graphe::frontierePareto(std::vector<std::vector<bool>>)    const
+{
+
 }
 
 std::vector<Arete*> Graphe::prim(std::string id, int indicePoids) const
@@ -233,6 +211,51 @@ void Graphe::afficherPrim(std::vector<Arete*> a)
     for (auto elem : poidsTot)
         std::cout << elem << ";";
     std::cout << ")" << std::endl;
+}
+
+bool Graphe::rech_connexe(std::vector<bool> combinaison)    const
+{
+    std::vector<int> tabConnex;
+    bool connex = false;
+
+    //On rempli le tableau de connexite avec des valeurs differentes pour chaque sommet
+    for (unsigned int i =0; i< m_sommets.size(); ++i)
+        tabConnex.push_back(i);
+
+    //On parcours notre combinaire binaire
+    for (unsigned int i=0;i<combinaison.size(); ++i)
+    {
+        //Si le bit est a 1
+        if (combinaison[i] == 1)
+        {
+            //On recupere l'indice de l'arete correspondant a ce bit
+            int iArete = abs(i-(m_aretes.size()-1));
+            //On recupere les id des sommets aux extremites de l'arete
+            int id1 = std::stoi(m_aretes[iArete]->getSommet(0)->getId());
+            int id2 = std::stoi(m_aretes[iArete]->getSommet(1)->getId());
+
+            //On verifie notre tableau de connexité pour savoir si les deux sommets font partie de la meme composante connexe
+            //Si il ne sont pas deja ensemble, on les met ensemble
+            if (tabConnex[id1] != tabConnex[id2])
+            {
+                tabConnex[id1] = (int)m_aretes.size();
+                tabConnex[id2] = (int)m_aretes.size();
+            }
+        }
+    }
+    unsigned int i=0;
+    //On compte le nombre de sommet ayant la meme composante connexe
+    for (auto elem : tabConnex)
+        if (elem == tabConnex[0])
+            i++;
+
+    //Si tous les sommets sont dans la meme connexe on return true, sinon false
+    if (i == tabConnex.size())
+        connex = true;
+    else
+        connex = false;
+
+    return connex;
 }
 
 Graphe::~Graphe()
