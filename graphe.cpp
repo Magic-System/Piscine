@@ -4,16 +4,23 @@
 #include <math.h>
 #include "graphe.h"
 #include <algorithm>
+#include <map>
 
 
 Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
     std::ifstream ifs{nomFichier};
     if (!ifs)
         throw std::runtime_error( "Impossible d'ouvrir en lecture " + nomFichier );
+
+    std::ifstream f_poids{fichierPoids};
+    if (!f_poids)
+        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichierPoids );
+
     int ordre;
     ifs >> ordre;
     if ( ifs.fail() )
         throw std::runtime_error("Probleme lecture ordre du graphe");
+
     std::string id;
     double x,y;
     //lecture des sommets
@@ -29,6 +36,13 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
         throw std::runtime_error("Probleme lecture taille du graphe");
     std::string id_s1;
     std::string id_s2;
+
+    std::string id_poids;
+    int nb_poids;
+    int t_poids;
+    f_poids >> t_poids;
+    f_poids >> nb_poids;
+
     //lecture des aretes
     for (int i=0; i<taille; ++i){
         //lecture des ids des deux extrémités
@@ -47,39 +61,19 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
                 s2 = elem;
         }
         s1->ajouterVoisin(s2);
-        m_aretes.push_back(new Arete(id, s1, s2));
-    }
-
-    ifs.close();
-    std::ifstream f_poids{fichierPoids};
-    if (!f_poids)
-        throw std::runtime_error( "Impossible d'ouvrir en lecture " + fichierPoids );
-
-    int nb_poids;
-    f_poids >> taille;
-    f_poids >> nb_poids;
-
-    for (int i=0; i<taille; ++i)
-    {
-        float p;
         std::vector<float> poids;
-        Arete* a;
-        f_poids >> id;
-        for (auto elem : m_aretes)
-        {
-            if (id == elem->getId())
-                a = elem;
-        }
+
+        float p;
+        f_poids >> id_poids;
 
         for (int i=0; i<nb_poids; ++i)
         {
             f_poids >> p;
             poids.push_back(p);
         }
-        a->initPoids(poids);
 
+        m_aretes.push_back(new Arete(id, s1, s2, poids));
     }
-
 }
 
 void Graphe::afficher() const
@@ -108,10 +102,10 @@ void Graphe::dessinerGraphSVG(Svgfile &svgout) const
     double y2;
        for(const auto val2: m_aretes)
        {
-           x1=val2->getSommet1()->getx();
-           y1=val2->getSommet1()->gety();
-           x2=val2->getSommet2()->getx();
-           y2=val2->getSommet2()->gety();
+           x1=val2->getSommet(0)->getx();
+           y1=val2->getSommet(0)->gety();
+           x2=val2->getSommet(1)->getx();
+           y2=val2->getSommet(1)->gety();
            svgout.addLine(x1, y1, x2, y2, "red");
            if((x1>x2)&&(y1>y2)) { svgout.addLine(x2+10,y2+10,x2+12.5,y2+17.5,"red");
                                   svgout.addLine(x2+10,y2+10,x2+17.5,y2+12.5,"red"); }
@@ -173,7 +167,7 @@ void Graphe::dessinerGraph() const
        }
        for(auto val2 : m_aretes)
        {
-           ofs << "LR_" << val2->getSommet1()->getId() <<" -> "<< "LR_" << val2->getSommet2()->getId()<<"[label =\"" <<val2->getPoids()[0]<<"/"<<val2->getPoids()[1]<<"\""<< "];" << std::endl;
+           ofs << "LR_" << val2->getSommet(0)->getId() <<" -> "<< "LR_" << val2->getSommet(1)->getId()<<"[label =\"" <<val2->getPoids()[0]<<"/"<<val2->getPoids()[1]<<"\""<< "];" << std::endl;
        }
        ofs << "}" << std::endl;
        ofs.close();
@@ -235,7 +229,7 @@ std::vector<Arete*> Graphe::prim(std::string id, int indicePoids) const
     return areteParcouru;
 }
 
-void Graphe::afficherPrim(std::vector<Arete*> a)
+void Graphe::afficherPrim(const std::vector<Arete*> a)  const
 {
     //On initialise le vector a 0
     std::vector<float> poidsTot(a[0]->getPoids().size(), 0.0);
@@ -258,6 +252,102 @@ void Graphe::afficherPrim(std::vector<Arete*> a)
     for (auto elem : poidsTot)
         std::cout << elem << ";";
     std::cout << ")" << std::endl;
+}
+ std::unordered_map<Sommet*,Sommet*> Graphe::dijkstra(Sommet *initial,int indicepoids)
+{
+    std::unordered_map<Sommet*,Sommet*> l_pred;
+    std::multimap<float, Sommet*> decouvert;
+    std::map<Sommet*,float> marque;
+
+    float distancetotal = 0;
+
+    marque.insert({initial,distancetotal});
+
+    while(marque.size() != m_sommets.size())
+    {
+        for(voisin : initial->getvoisins())
+        {
+            if(!marque.count(voisin))
+         {
+            std::multimap<float,Sommet*> ::iterator it;
+            std::multimap<float,Sommet*> ::iterator suppr;
+
+          float distance =0;
+
+          for(a:m_aretes)
+          {
+            if(a->getsommet1() == initial && a->getsommet2() == voisin)
+            distance = distancetotal + a->getPoids()[indicepoids];
+          }
+                bool valider = true;
+                bool supprimer = false;
+
+                for(it = decouvert.begin(); it!= decouvert.end(); ++it)
+                {
+                    if(voisin == (*it).second)
+                    {
+                       if(distance > (*it).first)
+                        valider = false;
+                       else
+                       {
+                         suppr = it;
+                         supprimer = true;
+                       }
+                    }
+                }
+                if(valider == true)
+                {
+                    if(supprimer == true)
+                    {
+                        decouvert.erase(distance);
+                        l_pred.erase(l_pred.find(voisin));
+                    }
+
+                    decouvert.insert({distance,voisin});
+                    l_pred.insert({voisin,initial});
+                }
+
+                distance = distancetotal;
+            }
+        }
+
+        marque.insert({(*decouvert.begin()).second,(*decouvert.begin()).first});
+        distancetotal = (*decouvert.begin()).first;
+
+        for(sommet_suivant:m_sommets)
+        {
+            if(sommet_suivant == (*decouvert.begin()).second)
+            initial = sommet_suivant;
+
+        }
+        decouvert.erase(decouvert.begin());
+      }
+
+      return l_pred;
+}
+
+void Graphe::afficherDijkstra()
+{
+    std::unordered_map<Sommet*, Sommet *> l_pred;
+
+    for(initial : m_sommets)
+    {
+      l_pred = dijkstra(initial,0);
+
+        for(auto s:l_pred)
+    {
+        std::cout<<s.first->getId()<<" <--- ";
+        std::pair<Sommet*,Sommet*> pred=s;
+
+        while(pred.second!= initial)
+        {
+            pred=*l_pred.find(pred.second);
+            std::cout<<pred.first->getId()<<" <--- ";
+        }
+        std::cout<<initial->getId()<<std::endl;
+
+    }
+    }
 }
 
 Graphe::~Graphe()

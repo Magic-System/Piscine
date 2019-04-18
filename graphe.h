@@ -24,7 +24,16 @@ class Graphe
         }
         //void prim(std::string id = "0", int indicePoids = 0) const;
         std::vector<Arete*> prim(std::string id = "0", int indicePoids = 0) const;
-        void afficherPrim(std::vector<Arete*>);
+        void afficherPrim(const std::vector<Arete*>) const;
+
+        std::unordered_map<Sommet*,Sommet*> dijkstra(Sommet *initial,int indicepoids);
+        void afficherDijkstra();
+
+           std::vector<Sommet*> getvectsommet()
+        {
+            return m_sommets;
+        }
+
 
         ~Graphe();
 
