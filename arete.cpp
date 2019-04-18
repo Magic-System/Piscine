@@ -43,19 +43,3 @@ Arete::~Arete()
 {
 
 }
-
-std::pair<float,float> calculCout(std::vector<Arete*> mesAretes)
- {
-     std::pair<float,float> coutTotaux;
-     float coutT1=0;
-     float coutT2=0;
-     for(int i=0; i < mesAretes.size();i++)
-     {
-         coutT1= coutT1+mesAretes[i]->getPoids()[0];
-         coutT2= coutT2+mesAretes[i]->getPoids()[1];
-     }
-     std::cout << "cout 1 :"  << coutT1 << "cout 2 :"  << coutT2 <<std::endl;
-    coutTotaux.first= coutT1;
-    coutTotaux.second= coutT2;
-     return coutTotaux;
-}

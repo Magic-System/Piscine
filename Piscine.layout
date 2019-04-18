@@ -2,29 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Release" />
-	<File name="arete.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="837" topLine="34" />
+			<Cursor1 position="1004" topLine="18" />
 		</Cursor>
 	</File>
-	<File name="graphe.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="solution.cpp" open="1" top="1" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2809" topLine="16" />
-		</Cursor>
-		<Folding>
-			<Collapse line="6" />
-			<Collapse line="76" />
-			<Collapse line="270" />
-			<Collapse line="291" />
-			<Collapse line="332" />
-			<Collapse line="357" />
-			<Collapse line="362" />
-			<Collapse line="367" />
-		</Folding>
-	</File>
-	<File name="graphe.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="444" topLine="0" />
+			<Cursor1 position="1218" topLine="25" />
 		</Cursor>
 	</File>
 	<File name="sommet.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -32,19 +17,39 @@
 			<Cursor1 position="444" topLine="6" />
 		</Cursor>
 	</File>
-	<File name="sommet.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="graphe.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="830" topLine="23" />
+			<Cursor1 position="3988" topLine="252" />
 		</Cursor>
+		<Folding>
+			<Collapse line="6" />
+			<Collapse line="76" />
+			<Collapse line="94" />
+		</Folding>
 	</File>
 	<File name="arete.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="423" topLine="0" />
+			<Cursor1 position="592" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="sommet.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="566" topLine="0" />
+			<Cursor1 position="830" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="graphe.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="495" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="solution.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="715" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="arete.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="835" topLine="18" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

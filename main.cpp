@@ -3,6 +3,7 @@
 #include "sommet.h"
 #include "arete.h"
 #include "svgfile.h"
+#include "solution.h"
 #include <math.h>
 
 ///Temps bruteforce par graphe :
@@ -24,6 +25,13 @@ int main()
     //g.afficherPrim(g.prim("0", 1));
     SVGrepere(svgout);
     std::vector<std::vector<bool>> test = g.sol_admissible(svgout);
+    std::vector<Solutions> tabSolus = g.calculCout(test);
+   /* for(int i = 0; i< tabSolus.size();++i)
+    {
+        tabSolus[i].afficher();
+    } */
+    toutDessiner(tabSolus,svgout);
+    pareto(tabSolus);
 
 /*
     for (auto elem : test)

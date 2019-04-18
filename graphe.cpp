@@ -124,24 +124,11 @@ std::vector<std::vector<bool>> Graphe::sol_admissible(Svgfile &svgout)
                 solutions.push_back(temp);
         }
     }
-  ///TEST THIBAULT POUR CALCUL POIDS
-
-    for (unsigned int  i = 0; i < solutions.size(); ++i)
-    {
-       for (unsigned int j = 0; j < solutions[i].size(); ++j)
-       {
-         SVGpoint(svgout,calculCout(solutions[i]));
-       }
-    }
-
     //On retourne les solutions filtre
     return solutions;
 }
 
-void Graphe::frontierePareto(std::vector<std::vector<bool>>)    const
-{
-
-}
+//void Graphe::frontierePareto(std::vector<std::vector<bool>>)    const
 
 std::vector<Arete*> Graphe::prim(std::string id, int indicePoids) const
 {
@@ -375,28 +362,32 @@ void SVGrepere(Svgfile &svgout)
     svgout.addText(560,40,"cout 1", "black");
     svgout.addText(810,250,"cout 2", "black");
 }
-void SVGpoint(Svgfile &svgout,std::pair<float,float> coutT)
-{
-    svgout.addDisk(coutT.first+600,250-coutT.second,1,"green");
-}
 
-std::pair<float,float> Graphe::calculCout(std::vector<bool> solutions)
+
+std::vector<Solutions> Graphe::calculCout(std::vector<std::vector<bool>> solutions)
  {
-    std::pair<float,float> coutTotaux;
+    std::vector<Solutions> tabSolus;
     float coutT1=0;
     float coutT2=0;
     for(unsigned int i=0;i<solutions.size(); ++i)
     {
-        if (solutions[i] == 1)
+        coutT1=0;
+        coutT2=0;
+
+        for(unsigned int j=0;j<solutions[i].size(); ++j)
         {
+            if (solutions[i][j] == 1)
+           {
             //On recupere l'indice de l'arete correspondant a ce bit
-            int iArete = abs(i-(m_aretes.size()-1));
-            coutT1= coutT1+m_aretes [iArete]->getPoids()[0];
-            coutT2= coutT2+m_aretes [iArete]->getPoids()[1];
+            int iArete = abs(j-(m_aretes.size()-1));
+            coutT1= coutT1+ m_aretes [iArete]->getPoids()[0];
+            coutT2= coutT2+ m_aretes [iArete]->getPoids()[1];
+           }
         }
+        Solutions x(coutT1, coutT2);
+        tabSolus.push_back(x);
     }
    // std::cout << "cout 1 :"  << coutT1 << "cout 2 :"  << coutT2 <<std::endl;
-    coutTotaux.first= coutT1;
-    coutTotaux.second= coutT2;
-    return coutTotaux;
+
+    return tabSolus;
  }

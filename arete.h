@@ -23,6 +23,4 @@ class Arete
         Sommet* m_sommet2;
 };
 
-std::pair<float,float> calculCout(std::vector<Arete*> mesAretes);
-
 #endif // ARETE_H_INCLUDED

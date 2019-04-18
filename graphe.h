@@ -5,6 +5,7 @@
 #include "sommet.h"
 #include "arete.h"
 #include "svgfile.h"
+#include "solution.h"
 
 class Graphe
 {
@@ -15,7 +16,7 @@ class Graphe
 
         void afficher() const;
         std::vector<std::vector<bool>> sol_admissible(Svgfile &svgout);
-        void frontierePareto(std::vector<std::vector<bool>>)    const;
+        //void frontierePareto(std::vector<std::vector<bool>>)    const;
         //void prim(std::string id = "0", int indicePoids = 0) const;
         std::vector<Arete*> prim(std::string id = "0", int indicePoids = 0) const;
         void afficherPrim(std::vector<Arete*>);
@@ -25,7 +26,7 @@ class Graphe
         void dessinerGraph() const;
         void dessinerGraphSVG(Svgfile &svgout) const;
         std::vector<Arete*> getArete() const;
-        std::pair<float,float> calculCout(std::vector<bool> solutions);
+        std::vector<Solutions> calculCout(std::vector<std::vector<bool>> solutions);
         ~Graphe();
 
     protected:
@@ -40,6 +41,5 @@ class Graphe
 };
 
 void SVGrepere(Svgfile &svgout);
-void SVGpoint(Svgfile &svgout,std::pair<float,float> coutT);
 
 #endif // GRAPHE_H

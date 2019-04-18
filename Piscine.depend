@@ -250,12 +250,12 @@
 	<unordered_set>
 	"sommet.h"
 
-1555602859 source:c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\arete.cpp
+1555620229 source:c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\arete.cpp
 	"arete.h"
 	<iostream>
 	<vector>
 
-1555602859 c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\arete.h
+1555620251 c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\arete.h
 	"sommet.h"
 
 1555602953 c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\sommet.h
@@ -264,26 +264,28 @@
 	<unordered_map>
 	<unordered_set>
 
-1555608504 source:c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\graphe.cpp
+1555626068 source:c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\graphe.cpp
 	<fstream>
 	<iostream>
 	<bitset>
 	<math.h>
 	"graphe.h"
 
-1555607646 c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\graphe.h
+1555626068 c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\graphe.h
 	<string>
 	<unordered_map>
 	"sommet.h"
 	"arete.h"
 	"svgfile.h"
+	"solution.h"
 
-1555608446 source:c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\main.cpp
+1555628050 source:c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\main.cpp
 	<iostream>
 	"graphe.h"
 	"sommet.h"
 	"arete.h"
 	"svgfile.h"
+	"solution.h"
 	<math.h>
 
 1555602953 source:c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\sommet.cpp
@@ -306,4 +308,16 @@
 	<set>
 	<vector>
 	<map>
+
+1555628013 source:c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\solution.cpp
+	"solution.h"
+
+1555628310 c:\users\titig\desktop\piscine-ft_rech_solution_admissible(1)\piscine-ft_rech_solution_admissible\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
 
