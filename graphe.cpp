@@ -6,6 +6,13 @@
 #include <algorithm>
 
 
+Graphe::Graphe(std::vector<Sommet*> sommets, std::vector<Arete*> aretes)
+{
+    m_sommets = sommets;
+    m_aretes  = aretes;
+}
+
+
 Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
     std::ifstream ifs{nomFichier};
     if (!ifs)
@@ -106,7 +113,7 @@ void Graphe::dessinerGraphSVG(Svgfile &svgout) const
            x2=val2->getSommet(1)->getx();
            y2=val2->getSommet(1)->gety();
            svgout.addLine(x1, y1, x2, y2, "red");
-           if((x1>x2)&&(y1>y2)) { svgout.addLine(x2+10,y2+10,x2+12.5,y2+17.5,"red");
+     /*      if((x1>x2)&&(y1>y2)) { svgout.addLine(x2+10,y2+10,x2+12.5,y2+17.5,"red");
                                   svgout.addLine(x2+10,y2+10,x2+17.5,y2+12.5,"red"); }
            if((x1==x2)&&(y1>y2)) { svgout.addLine(x2,y2+15,x2-5,y2+20,"red");
                                   svgout.addLine(x2,y2+15,x2+5,y2+20,"red"); }
@@ -121,7 +128,7 @@ void Graphe::dessinerGraphSVG(Svgfile &svgout) const
            if((x1<x2)&&(y1<y2)) { svgout.addLine(x2-15,y2-15,x2-17.5,y2-22.5,"red");
                                   svgout.addLine(x2-15,y2-15,x2-22.5,y2-17.5,"red"); }
            if((x1<x2)&&(y1==y2)) { svgout.addLine(x2-15,y2,x2-20,y2+5,"red");
-                                  svgout.addLine(x2-15,y2,x2-20,y2-5,"red"); }
+                                  svgout.addLine(x2-15,y2,x2-20,y2-5,"red"); }  */
            svgout.addText((x1+x2)/2,(y1+y2)/2 ,val2->getPoids()[0], "green");
            svgout.addText((x1+x2)/2+7,(y1+y2)/2 ,";", "green");
            svgout.addText((x1+x2)/2+10,(y1+y2)/2 ,val2->getPoids()[1], "green");
@@ -137,7 +144,7 @@ void Graphe::dessinerGraphSVG(Svgfile &svgout) const
        }
 }
 
-void SVGgraph(Svgfile &svgout, float cout1, float cout2)
+void SVGrepere(Svgfile &svgout)
 {
     svgout.addLine(600,50,600,250, "black");
     svgout.addLine(600,250,800,250, "black");
@@ -145,11 +152,12 @@ void SVGgraph(Svgfile &svgout, float cout1, float cout2)
     svgout.addLine(600,50,605,55, "black");
     svgout.addLine(800,250,795,245, "black");
     svgout.addLine(800,250,795,255, "black");
-    svgout.addDisk(cout1+600,250-cout2,3,"green");
     svgout.addText(560,40,"cout 1", "black");
     svgout.addText(810,250,"cout 2", "black");
-
-
+}
+void SVGpoint(Svgfile &svgout,float cout1, float cout2)
+{
+    svgout.addDisk(cout1+600,250-cout2,3,"green");
 }
 
 void Graphe::dessinerGraph() const
@@ -159,10 +167,10 @@ void Graphe::dessinerGraph() const
    std::cerr <<"error !"<<std::endl;
    else
    {
-      ofs << "digraph finite_state_machine{" << std::endl << "rankdir=LR;" <<std::endl << "size= \"300,300 \"" << "node [shape = cirlce];" <<std::endl;
+      ofs << "digraph{" << std::endl << "size= \"50,50 \"" << "node [shape = circle];" <<std::endl;
        for (auto val : m_sommets)
        {
-           ofs << "LR_" << val->getId() <<"[pos=\"" << val->getx()/10 << "," << val->gety() /10 << "!" << "\"];" << std::endl;
+           ofs << "LR_" << val->getId() <<"[pos=\"" << val->getx()/10 << "," << abs(val->gety() /10 -100) << "!" << "\"];" << std::endl;
        }
        for(auto val2 : m_aretes)
        {
@@ -174,7 +182,7 @@ void Graphe::dessinerGraph() const
 
 }
 
-std::vector<Arete*> Graphe::prim(std::string id, int indicePoids) const
+Graphe Graphe::prim(std::string id, int indicePoids) const
 {
     std::vector<Sommet*> decouverts;
     std::vector<Arete*> areteParcouru;
@@ -224,18 +232,20 @@ std::vector<Arete*> Graphe::prim(std::string id, int indicePoids) const
 
     //tant que l'ordre de la liste des sommets decouverts n'est pas le meme que l'ordre du graphe
     }while(decouverts.size() != m_sommets.size());
+    Graphe prim(decouverts,areteParcouru);
 
-    return areteParcouru;
+
+    return prim;
 }
 
-void Graphe::afficherPrim(const std::vector<Arete*> a)  const
+void Graphe::afficherPrim(const Graphe a,Svgfile &svgout)  const
 {
     //On initialise le vector a 0
-    std::vector<float> poidsTot(a[0]->getPoids().size(), 0.0);
+    std::vector<float> poidsTot(a.getArete()[0]->getPoids().size(), 0.0);
 
     //std::cout << "Prim a partir du Sommet : " << id << ", en fonction du poids d'indice : " << indicePoids << std::endl;
 
-    for (auto elem : a)
+    for (const auto elem : a.m_aretes)
     {
         //On affiche les arete parcouru par prim
         elem->afficherArete();
@@ -251,9 +261,37 @@ void Graphe::afficherPrim(const std::vector<Arete*> a)  const
     for (auto elem : poidsTot)
         std::cout << elem << ";";
     std::cout << ")" << std::endl;
+    SVGpoint(svgout,poidsTot[0],poidsTot[1]);
 }
+
+
+
+ /*int Graphe::Connexe() const
+ {
+     std::unordered_map<Sommet* ,int> tab;
+     int id=0;
+     for( auto i: m_sommets[id])
+     {
+         tab.insert({ i[id], id});
+         ++id;
+     }
+     for(auto j = tab.begin(); j != tab.end(); ++j)
+     {
+         std::cout << j->first->getId() << "/" << j->second <<std::endl;
+     }
+     {
+         tab[j->getSommet(1)]=tab[j->getSommet(0)];
+     }
+     int compteur=0;
+     for(int z=0; z<18; z++)
+     {
+         std::cout << tab[m_sommets[z]]->second;
+     }
+    if (compteur == k) std::cout<< "le graphe est connexe" << std::endl;
+ } */
 
 Graphe::~Graphe()
 {
     //dtor
 }
+

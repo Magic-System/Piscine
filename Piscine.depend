@@ -56,3 +56,61 @@
 	<iostream>
 	<sstream>
 
+1555599670 source:c:\users\titig\desktop\nouveau dossier\piscine\arete.cpp
+	"arete.h"
+	<iostream>
+	<fstream>
+	<vector>
+
+1555599416 c:\users\titig\desktop\nouveau dossier\piscine\arete.h
+	"sommet.h"
+
+1555595342 c:\users\titig\desktop\nouveau dossier\piscine\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+
+1555599259 source:c:\users\titig\desktop\nouveau dossier\piscine\graphe.cpp
+	<fstream>
+	<iostream>
+	<bitset>
+	<math.h>
+	"graphe.h"
+	<algorithm>
+
+1555595342 c:\users\titig\desktop\nouveau dossier\piscine\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555500437 c:\users\titig\desktop\nouveau dossier\piscine\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555599898 source:c:\users\titig\desktop\nouveau dossier\piscine\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555595342 source:c:\users\titig\desktop\nouveau dossier\piscine\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555500437 source:c:\users\titig\desktop\nouveau dossier\piscine\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+

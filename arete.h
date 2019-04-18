@@ -12,6 +12,7 @@ class Arete
         std::string getId()    const;
         Sommet* getSommet(bool i)    const;
         std::vector<float> getPoids()   const;
+        void dessinerGraph() const;
         ~Arete();
 
     protected:
@@ -23,5 +24,6 @@ class Arete
         Sommet* m_sommet2;
 };
 
+ std::pair<float,float> calculCout(std::vector<Arete*> mesAretes);
 
 #endif // ARETE_H_INCLUDED
