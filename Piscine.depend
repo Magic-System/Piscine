@@ -392,3 +392,74 @@
 	<math.h>
 	"graphe.h"
 
+1555680134 source:c:\users\daniel\desktop\piscine-develop\arete.cpp
+	"arete.h"
+	<iostream>
+	<vector>
+
+1555680134 c:\users\daniel\desktop\piscine-develop\arete.h
+	"sommet.h"
+
+1555680134 c:\users\daniel\desktop\piscine-develop\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+
+1555680134 source:c:\users\daniel\desktop\piscine-develop\graphe.cpp
+	<fstream>
+	<iostream>
+	<bitset>
+	<math.h>
+	"graphe.h"
+
+1555687131 c:\users\daniel\desktop\piscine-develop\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+
+1555680134 c:\users\daniel\desktop\piscine-develop\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555680134 c:\users\daniel\desktop\piscine-develop\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555680134 source:c:\users\daniel\desktop\piscine-develop\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+
+1555680134 source:c:\users\daniel\desktop\piscine-develop\solution.cpp
+	"solution.h"
+
+1555680134 source:c:\users\daniel\desktop\piscine-develop\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555680134 source:c:\users\daniel\desktop\piscine-develop\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+

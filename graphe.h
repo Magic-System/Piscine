@@ -29,7 +29,7 @@ class Graphe
 
         int getOrdre()  const;
         std::vector<Sommet*> getVectSommet()    const;
-        std::unordered_map<Sommet*, Sommet*> dijkstra();
+        std::unordered_map<Sommet*, Sommet*> dijkstra(Sommet *initial,int indicepoids);
         void afficherDijkstra();
 
         ~Graphe();

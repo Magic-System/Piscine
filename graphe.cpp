@@ -355,86 +355,73 @@ std::vector<Sommet*> Graphe::getVectSommet()    const
     return m_sommets;
 }
 
-std::unordered_map<Sommet*, Sommet*> Graphe::dijkstra()
+ std::unordered_map<Sommet*,Sommet*> Graphe::dijkstra(Sommet *initial,int indicepoids)
 {
     std::unordered_map<Sommet*,Sommet*> l_pred;
     std::multimap<float, Sommet*> decouvert;
-    std::multimap<float, Sommet*> marque;
+    std::map<Sommet*,float> marque;
 
     float distancetotal = 0;
 
-    Sommet* s = m_sommets.front();
-    marque.insert({distancetotal,s});
+    marque.insert({initial,distancetotal});
 
     while(marque.size() != m_sommets.size())
     {
-        for(auto voisin : s->getvoisins())
+        for(auto voisin : initial->getvoisins())
         {
-            bool continuer = true;
+            if(!marque.count(voisin))
+         {
+            std::multimap<float,Sommet*> ::iterator it;
+            std::multimap<float,Sommet*> ::iterator suppr;
 
-        std::multimap<float,Sommet*>::iterator it;
+          float distance =0;
 
-        for(it = marque.begin();it != marque.end();++it)
-            {
-                if(voisin == (*it).second)
-                    continuer = false;
-            }
-
-            if(continuer == true)
-            {
-                float d1=0,d2=0,distance =0;
-
-                d1 = (voisin->getx() - s->getx()) * (voisin->getx() - s->getx());
-                d2 = (voisin->gety() - s->gety()) * (voisin->gety() - s->gety());
-
-                distance = distancetotal + sqrt( d1 + d2);
-
-                std::multimap<float,Sommet*> ::iterator it;
+          for(auto a : m_aretes)
+          {
+            if(a->getSommet(0) == initial && a->getSommet(1) == voisin)
+            distance = distancetotal + a->getPoids()[indicepoids];
+          }
                 bool valider = true;
+                bool supprimer = false;
 
                 for(it = decouvert.begin(); it!= decouvert.end(); ++it)
                 {
                     if(voisin == (*it).second)
                     {
-                        if(distance >= (*it).first)
-                        {
-                            valider = false;
-                        }
-
-                        else
-                        {
-                            decouvert.erase(it);
-
-                            std::unordered_map<Sommet*,Sommet*> ::iterator ite;
-
-                            for(ite = l_pred.begin(); ite!= l_pred.end(); ++ite)
-                            {
-                                if((*ite).second == voisin)
-                                    l_pred.erase(ite);
-                            }
-                        }
+                       if(distance > (*it).first)
+                        valider = false;
+                       else
+                       {
+                         suppr = it;
+                         supprimer = true;
+                       }
                     }
                 }
-
                 if(valider == true)
                 {
+                    if(supprimer == true)
+                    {
+                        decouvert.erase(distance);
+                        l_pred.erase(l_pred.find(voisin));
+                    }
+
                     decouvert.insert({distance,voisin});
-                    l_pred.insert({voisin,s});
+                    l_pred.insert({voisin,initial});
                 }
+
                 distance = distancetotal;
             }
         }
 
-        marque.insert({(*decouvert.begin()).first,(*decouvert.begin()).second});
-
-        distancetotal = (*decouvert.begin()).first;
+        marque.insert({(*decouvert.begin()).second,(*decouvert.begin()).first});
+        distancetotal = (*marque.begin()).second;
 
         for(auto sommet_suivant : m_sommets)
         {
             if(sommet_suivant == (*decouvert.begin()).second)
-                s = sommet_suivant;
-        }
+            initial = sommet_suivant;
 
+        }
         decouvert.erase(decouvert.begin());
       }
 
@@ -445,19 +432,23 @@ void Graphe::afficherDijkstra()
 {
     std::unordered_map<Sommet*, Sommet *> l_pred;
 
-     l_pred = dijkstra();
+    for(auto initial : m_sommets)
+    {
+      l_pred = dijkstra(initial,0);
 
-    for(auto s:l_pred)
+        for(auto s:l_pred)
     {
         std::cout<<s.first->getId()<<" <--- ";
         std::pair<Sommet*,Sommet*> pred=s;
 
-        while(pred.second!= m_sommets.front())
+        while(pred.second!= initial)
         {
             pred=*l_pred.find(pred.second);
             std::cout<<pred.first->getId()<<" <--- ";
         }
-        std::cout<<m_sommets.front()->getId()<<std::endl;
+        std::cout<<initial->getId()<<std::endl;
+
+    }
     }
 }
 
