@@ -15,7 +15,7 @@ class Solutions
         {} ;
         Solutions() {};
         ~Solutions(){};
-        void SVGpoint(Svgfile &svgout);
+        void SVGpoint(Svgfile &svgout,std::string color);
         float getCout1();
         float getCout2();
         void afficher();
@@ -30,5 +30,6 @@ class Solutions
 
 };
 void toutDessiner(std::vector<Solutions> tabSolus,Svgfile &svgout);
-void pareto(std::vector<Solutions> tabSolus);
+void dessinerPareto( std::unordered_map<float,Solutions> CombinaisonsForte,std::unordered_map<float,Solutions> CombinaisonsFaible,Svgfile &svgout);
+void pareto(std::vector<Solutions> tabSolus,Svgfile &svgout);
 #endif // SOLUTION_H_INCLUDED

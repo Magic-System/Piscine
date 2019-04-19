@@ -30,8 +30,8 @@ int main()
     {
         tabSolus[i].afficher();
     } */
-    toutDessiner(tabSolus,svgout);
-    pareto(tabSolus);
+   // toutDessiner(tabSolus,svgout);
+    pareto(tabSolus,svgout);
 
 /*
     for (auto elem : test)

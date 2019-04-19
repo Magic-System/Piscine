@@ -10,13 +10,13 @@
 <text x="560" y="40" fill="black" >cout 1</text>
 <text x="810" y="250" fill="black" >cout 2</text>
 <circle cx="618" cy="236" r="1" fill="green" />
-<circle cx="619" cy="235" r="1" fill="green" />
-<circle cx="613" cy="235" r="1" fill="green" />
-<circle cx="616" cy="231" r="1" fill="green" />
-<circle cx="617" cy="230" r="1" fill="green" />
 <circle cx="611" cy="230" r="1" fill="green" />
-<circle cx="622" cy="232" r="1" fill="green" />
-<circle cx="616" cy="232" r="1" fill="green" />
+<circle cx="613" cy="235" r="1" fill="green" />
+<circle cx="616" cy="232" r="1" fill="red" />
+<circle cx="619" cy="235" r="1" fill="red" />
+<circle cx="622" cy="232" r="1" fill="red" />
+<circle cx="616" cy="231" r="1" fill="red" />
+<circle cx="617" cy="230" r="1" fill="red" />
 
 
 </svg>
