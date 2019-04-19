@@ -58,6 +58,7 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
                 s2 = elem;
         }
         s1->ajouterVoisin(s2);
+
         std::vector<float> poids;
 
         float p;
@@ -234,8 +235,12 @@ bool Graphe::rech_connexe(std::vector<bool> combinaison)    const
             //Si il ne sont pas deja ensemble, on les met ensemble
             if (tabConnex[id1] != tabConnex[id2])
             {
-                tabConnex[id1] = (int)m_aretes.size();
-                tabConnex[id2] = (int)m_aretes.size();
+                int temp1 =tabConnex[id1];
+                int temp2 = tabConnex[id2];
+                for(size_t j=0; j<tabConnex.size();++j)
+                {
+                    if(tabConnex[j] == temp1) tabConnex[j]=temp2;
+                }
             }
         }
     }
@@ -254,6 +259,67 @@ bool Graphe::rech_connexe(std::vector<bool> combinaison)    const
     return connex;
 }
 
+/* bool Graphe::rech_connexe(std::vector<bool> combinaison)    const
+{
+    std::unordered_map<std::string,int> tabConnex;
+    bool connex = false;
+    int c=0;
+
+    //On rempli le tableau de connexite avec des valeurs differentes pour chaque sommet
+    for (int i =0; i< m_sommets.size(); ++i)
+        {tabConnex.insert({m_sommets[c]->getId(),i});
+         ++c;}
+    //On parcours notre combinaire binaire
+    for (unsigned int i=0;i<combinaison.size(); ++i)
+    {
+        //Si le bit est a 1
+        if (combinaison[i] == 1)
+        {
+            //On recupere l'indice de l'arete correspondant a ce bit
+            int iArete = abs(i-(m_aretes.size()-1));
+            //On recupere les id des sommets aux extremites de l'arete
+            std::string id1=m_aretes[iArete]->getSommet(0)->getId();
+            std::string id2=m_aretes[iArete]->getSommet(1)->getId();
+
+        //    int id1 = std::stoi(m_aretes[iArete]->getSommet(0)->getId());
+        //   int id2 = std::stoi(m_aretes[iArete]->getSommet(1)->getId());
+
+            //On verifie notre tableau de connexité pour savoir si les deux sommets font partie de la meme composante connexe
+            //Si il ne sont pas deja ensemble, on les met ensemble
+            if (tabConnex[id1] != tabConnex[id2])
+            {
+              tabConnex[id1] = (int)m_sommets.size();
+              tabConnex[id2] = (int)m_sommets.size();
+              for(int i=0;i<tabConnex.size();++i)
+              {
+
+                 if (tabConnex[id1] != tabConnex[id2])
+                 {
+                    tabConnex[id1] = (int)m_aretes.size();
+                    tabConnex[id2] = (int)m_aretes.size();
+                 }
+
+              }
+            }
+        }
+    }
+    int compteur=0;
+   // int test = tabConnex.begin()->second;
+   //On compte le nombre de sommet ayant la meme composante connexe
+     for(auto it = tabConnex.begin(); it!= tabConnex.end(); it++)
+    {
+              if (it->second == tabConnex.begin()->second) compteur++;
+    }
+
+    //Si tous les sommets sont dans la meme connexe on return true, sinon false
+    if (compteur == tabConnex.size())
+        connex = true;
+    else
+        connex = false;
+
+    return connex;
+}
+*/
 void Graphe::dessinerGraph() const
 {
    std::ofstream ofs{"GrapheOut.txt"};
@@ -380,8 +446,8 @@ std::vector<Solutions> Graphe::calculCout(std::vector<std::vector<bool>> solutio
            {
             //On recupere l'indice de l'arete correspondant a ce bit
             int iArete = abs(j-(m_aretes.size()-1));
-            coutT1= coutT1+ m_aretes [iArete]->getPoids()[0];
-            coutT2= coutT2+ m_aretes [iArete]->getPoids()[1];
+            coutT1= coutT1+ m_aretes[iArete]->getPoids()[0];
+            coutT2= coutT2+ m_aretes[iArete]->getPoids()[1];
            }
         }
         Solutions x(coutT1, coutT2);

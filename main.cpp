@@ -18,7 +18,7 @@ int main()
     //Graphe g{"files/broadway.txt", "files/broadway_weights_0.txt"};
     //Graphe g{"files/cubetown.txt", "files/cubetown_weights_0.txt"};
     //Graphe g{"files/triville.txt", "files/triville_weights_0.txt"};
-    Graphe g{"files/broadway.txt", "files/broadway_weights_0.txt"};
+    Graphe g{"files/manhattan.txt", "files/manhattan_weights_0.txt"};
     g.afficher();
 
     //g.afficherPrim(g.prim());

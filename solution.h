@@ -13,7 +13,7 @@ class Solutions
     public:
         Solutions(float cout1, float cout2):m_coutT1{cout1}, m_coutT2{cout2}
         {} ;
-        Solutions() {};
+        Solutions(){};
         ~Solutions(){};
         void SVGpoint(Svgfile &svgout,std::string color);
         float getCout1();
