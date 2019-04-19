@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include "sommet.h"
 #include "arete.h"
+#include "svgfile.h"
+
 
 class Graphe
 {
@@ -13,16 +15,21 @@ class Graphe
         Graphe(std::string, std::string);
 
         void afficher() const;
-        void kruskal();
-       std::unordered_map<Sommet*,Sommet*>  dijkstra();
-       void afficherDijkstra();
+        void dessinerGraphSVG(Svgfile &svgout) const;
+        void dessinerGraph() const;
 
         int getOrdre() const
         {
           return (int)m_sommets.size();
         }
+        //void prim(std::string id = "0", int indicePoids = 0) const;
+        std::vector<Arete*> prim(std::string id = "0", int indicePoids = 0) const;
+        void afficherPrim(const std::vector<Arete*>) const;
 
-        std::vector<Sommet*> getvectsommet()
+        std::unordered_map<Sommet*,Sommet*> dijkstra(Sommet *initial,int indicepoids);
+        void afficherDijkstra();
+
+           std::vector<Sommet*> getvectsommet()
         {
             return m_sommets;
         }
@@ -40,5 +47,7 @@ class Graphe
         //std::unordered_map<std::string,Sommet*> m_sommets;//stockée dans une map (clé=id du sommet, valeur= pointeur sur le sommet)
 
 };
+
+void SVGgraph(Svgfile &svgout, float cout1, float cout2);
 
 #endif // GRAPHE_H

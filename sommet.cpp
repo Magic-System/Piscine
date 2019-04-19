@@ -6,9 +6,10 @@
 #include<unordered_set>
 #include "sommet.h"
 
-Sommet::Sommet(std::string id,double x,double y):m_id{id},m_x{x},m_y{y}
+Sommet::Sommet(std::string id ,double x ,double y):m_id{id},m_x{x},m_y{y}
 {
 }
+
 
 void Sommet::ajouterVoisin( Sommet* voisin){
     m_voisins.push_back(voisin);
@@ -33,6 +34,15 @@ std::string Sommet::getId() const
     return m_id;
 }
 
+double Sommet::getx() const
+{
+    return m_x;
+}
+
+double Sommet::gety() const
+{
+    return m_y;
+}
 
 Sommet::~Sommet()
 {

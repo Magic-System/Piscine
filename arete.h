@@ -9,9 +9,12 @@ class Arete
         Arete(std::string, Sommet*, Sommet*, std::vector<float>);
 
         void afficherArete()    const;
-        std::string getId() const;
+        std::string getId()    const;
+        Sommet* getSommet(bool i)    const;
+        std::vector<float> getPoids()   const;
+        ~Arete();
 
-        Sommet* getsommet1() const
+            Sommet* getsommet1() const
         {
             return m_sommet1;
         }
@@ -21,12 +24,6 @@ class Arete
             return m_sommet2;
         }
 
-        std::vector<float> getpoids() const
-        {
-            return m_poids;
-        }
-
-        ~Arete();
 
     protected:
 
