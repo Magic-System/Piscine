@@ -23,5 +23,4 @@ class Arete
         Sommet* m_sommet2;
 };
 
-
 #endif // ARETE_H_INCLUDED

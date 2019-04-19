@@ -5,7 +5,7 @@
 #include "sommet.h"
 #include "arete.h"
 #include "svgfile.h"
-
+#include "solution.h"
 
 class Graphe
 {
@@ -15,16 +15,22 @@ class Graphe
         Graphe(std::string, std::string);
 
         void afficher() const;
-        void dessinerGraphSVG(Svgfile &svgout) const;
-        void dessinerGraph() const;
-
-        int getOrdre() const
-        {
-          return (int)m_sommets.size();
-        }
+        std::vector<std::vector<bool>> sol_admissible(Svgfile &svgout);
+        //void frontierePareto(std::vector<std::vector<bool>>)    const;
         //void prim(std::string id = "0", int indicePoids = 0) const;
         std::vector<Arete*> prim(std::string id = "0", int indicePoids = 0) const;
-        void afficherPrim(const std::vector<Arete*>) const;
+        void afficherPrim(std::vector<Arete*>);
+        void afficherPrim(const Graphe,Svgfile &svgout) const;
+        bool rech_connexe(std::vector<bool>) const;
+        void dessinerGraph() const;
+        void dessinerGraphSVG(Svgfile &svgout) const;
+        std::vector<Arete*> getArete() const;
+        std::vector<Solutions> calculCout(std::vector<std::vector<bool>> solutions);
+
+        int getOrdre()  const;
+        std::vector<Sommet*> getVectSommet()    const;
+        std::unordered_map<Sommet*, Sommet*> dijkstra();
+        void afficherDijkstra();
 
         ~Graphe();
 
@@ -39,6 +45,6 @@ class Graphe
 
 };
 
-void SVGgraph(Svgfile &svgout, float cout1, float cout2);
+void SVGrepere(Svgfile &svgout);
 
 #endif // GRAPHE_H

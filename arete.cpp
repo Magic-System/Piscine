@@ -38,6 +38,7 @@ void Arete::afficherArete() const
 
 }
 
+
 Arete::~Arete()
 {
 

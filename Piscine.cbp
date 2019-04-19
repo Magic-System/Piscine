@@ -37,6 +37,8 @@
 		<Unit filename="graphe.cpp" />
 		<Unit filename="graphe.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="solution.cpp" />
+		<Unit filename="solution.h" />
 		<Unit filename="sommet.cpp" />
 		<Unit filename="sommet.h" />
 		<Unit filename="svgfile.cpp" />
