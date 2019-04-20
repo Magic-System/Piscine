@@ -32,36 +32,36 @@ int main()
 
 
     std::vector<Solutions> tabSolusP3=CalculDijkstra(tabGrapheP3);
-    for(int i =0;i < tabSolusP3.size();++i)
+    for(unsigned int i =0; i < tabSolusP3.size(); ++i)
     {
         tabSolusP3[i].afficher();
     }
-     pareto(tabSolusP3,svgout);
+    pareto(tabSolusP3,svgout);
 
-   /* for(int i =0; i<tabGrapheP3.size();++i)
-    {
-    std::cout<< tabGrapheP3[i].getArete().size() << std::endl;
-    } */
+    /* for(int i =0; i<tabGrapheP3.size();++i)
+     {
+     std::cout<< tabGrapheP3[i].getArete().size() << std::endl;
+     } */
 
 
     //std::vector<std::pair<float,float>>temp = bi_objectif(tabSolus,svgout) ;
     //paretoDijkstra(Partie3 , svgout);
 
 
-   /* for(int i = 0; i< tabSolus.size();++i)
-    {
-        tabSolus[i].afficher();
-    } */
+    /* for(int i = 0; i< tabSolus.size();++i)
+     {
+         tabSolus[i].afficher();
+     } */
     //toutDessiner(tabSolus,svgout);
 
-/*
-    for (auto elem : test)
-    {
-        for (auto b : elem)
-            std::cout << b;
-        std::cout << std::endl;
-    }
-*/
+    /*
+        for (auto elem : test)
+        {
+            for (auto b : elem)
+                std::cout << b;
+            std::cout << std::endl;
+        }
+    */
     std::cout <<"Partie 2 : " << Partie2.size() << "   solutions" << std::endl;
     std::cout <<"Partie 3 : " << Partie3.size() << "   solutions" << std::endl;
     return 0;

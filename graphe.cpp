@@ -6,15 +6,22 @@
 #include "solution.h"
 #include <map>
 
-Graphe::Graphe(std::vector<Arete*> aretes, std::vector<Sommet*> sommets) : m_aretes {aretes}, m_sommets {sommets}
-{}
+Graphe::Graphe(std::vector<Arete*> aretes, std::vector<Sommet*> sommets)
+{
+    for (auto elem : aretes)
+        m_aretes.push_back(elem);
+
+    for (auto elem : sommets)
+        m_sommets.push_back(elem);
+}
 
 std::vector<Sommet*> Graphe::getm_sommets() const
 {
     return m_sommets;
 }
 
-Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
+Graphe::Graphe(std::string nomFichier, std::string fichierPoids)
+{
     std::ifstream ifs{nomFichier};
     if (!ifs)
         throw std::runtime_error( "Impossible d'ouvrir en lecture " + nomFichier );
@@ -31,10 +38,17 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
     std::string id;
     double x,y;
     //lecture des sommets
-    for (int i=0; i<ordre; ++i){
-        ifs>>id; if(ifs.fail()) throw std::runtime_error("Probleme lecture données sommet");
-        ifs>>x; if(ifs.fail()) throw std::runtime_error("Probleme lecture données sommet");
-        ifs>>y; if(ifs.fail()) throw std::runtime_error("Probleme lecture données sommet");
+    for (int i=0; i<ordre; ++i)
+    {
+        ifs>>id;
+        if(ifs.fail())
+            throw std::runtime_error("Probleme lecture données sommet");
+        ifs>>x;
+        if(ifs.fail())
+            throw std::runtime_error("Probleme lecture données sommet");
+        ifs>>y;
+        if(ifs.fail())
+            throw std::runtime_error("Probleme lecture données sommet");
         m_sommets.push_back(new Sommet{id,x,y});
     }
     int taille;
@@ -51,11 +65,18 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
     f_poids >> nb_poids;
 
     //lecture des aretes
-    for (int i=0; i<taille; ++i){
+    for (int i=0; i<taille; ++i)
+    {
         //lecture des ids des deux extrémités
-        ifs>>id; if(ifs.fail()) throw std::runtime_error("Probleme lecture id arete");
-        ifs>>id_s1; if(ifs.fail()) throw std::runtime_error("Probleme lecture arete sommet 1");
-        ifs>>id_s2; if(ifs.fail()) throw std::runtime_error("Probleme lecture arete sommet 2");
+        ifs>>id;
+        if(ifs.fail())
+            throw std::runtime_error("Probleme lecture id arete");
+        ifs>>id_s1;
+        if(ifs.fail())
+            throw std::runtime_error("Probleme lecture arete sommet 1");
+        ifs>>id_s2;
+        if(ifs.fail())
+            throw std::runtime_error("Probleme lecture arete sommet 2");
 
         Sommet* s1 = nullptr;
         Sommet* s2 = nullptr;
@@ -129,24 +150,26 @@ std::vector<std::vector<bool>> Graphe::sol_admissible(bool cycle)
             }
         }
         if(cycle == 1)
-        {if (k >= m_sommets.size()-1)
-           {
-              if (rech_connexe(temp) == true) solutions.push_back(temp);
-           }
-        }
-        else
-        {if (k == m_sommets.size()-1)
+        {
+            if (k >= m_sommets.size()-1)
             {
-            if (rech_connexe(temp) == true) solutions.push_back(temp);
+                if (rech_connexe(temp) == true)
+                    solutions.push_back(temp);
             }
         }
-}
+        else
+        {
+            if (k == m_sommets.size()-1)
+            {
+                if (rech_connexe(temp) == true)
+                    solutions.push_back(temp);
+            }
+        }
+    }
 
     //On retourne les solutions filtre
     return solutions;
 }
-
-//void Graphe::frontierePareto(std::vector<std::vector<bool>>)    const
 
 std::vector<Arete*> Graphe::prim(std::string id, int indicePoids) const
 {
@@ -158,7 +181,8 @@ std::vector<Arete*> Graphe::prim(std::string id, int indicePoids) const
         if (elem->getId() == id)
             decouverts.push_back(elem);
 
-    do{
+    do
+    {
         //liste d'arete potentiellement choisie
         std::vector<Arete*> a;
 
@@ -196,8 +220,9 @@ std::vector<Arete*> Graphe::prim(std::string id, int indicePoids) const
         decouverts.push_back(areteSelec->getSommet(1));
         areteParcouru.push_back(areteSelec);
 
-    //tant que l'ordre de la liste des sommets decouverts n'est pas le meme que l'ordre du graphe
-    }while(decouverts.size() != m_sommets.size());
+        //tant que l'ordre de la liste des sommets decouverts n'est pas le meme que l'ordre du graphe
+    }
+    while(decouverts.size() != m_sommets.size());
 
     return areteParcouru;
 }
@@ -237,7 +262,7 @@ bool Graphe::rech_connexe(std::vector<bool> combinaison)    const
         tabConnex.push_back(i);
 
     //On parcours notre combinaire binaire
-    for (unsigned int i=0;i<combinaison.size(); ++i)
+    for (unsigned int i=0; i<combinaison.size(); ++i)
     {
         //Si le bit est a 1
         if (combinaison[i] == 1)
@@ -254,9 +279,10 @@ bool Graphe::rech_connexe(std::vector<bool> combinaison)    const
             {
                 int temp1 =tabConnex[id1];
                 int temp2 = tabConnex[id2];
-                for(size_t j=0; j<tabConnex.size();++j)
+                for(size_t j=0; j<tabConnex.size(); ++j)
                 {
-                    if(tabConnex[j] == temp1) tabConnex[j]=temp2;
+                    if(tabConnex[j] == temp1)
+                        tabConnex[j]=temp2;
                 }
             }
         }
@@ -278,64 +304,31 @@ bool Graphe::rech_connexe(std::vector<bool> combinaison)    const
 
 void Graphe::dessinerGraph() const
 {
-   std::ofstream ofs{"GrapheOut.txt"};
-   if(!ofs)
-   std::cerr <<"error !"<<std::endl;
-   else
-   {
-      ofs << "digraph{" << std::endl << "size= \"50,50 \"" << "node [shape = circle];" <<std::endl;
-       for (auto val : m_sommets)
-       {
-           ofs << "LR_" << val->getId() <<"[pos=\"" << val->getx()/10 << "," << abs(val->gety() /10 -100) << "!" << "\"];" << std::endl;
-       }
-       for(auto val2 : m_aretes)
-       {
-           ofs << "LR_" << val2->getSommet(0)->getId() <<" -> "<< "LR_" << val2->getSommet(1)->getId()<<"[label =\"" <<val2->getPoids()[0]<<"/"<<val2->getPoids()[1]<<"\""<< "];" << std::endl;
-       }
-       ofs << "}" << std::endl;
-       ofs.close();
-   }
+    std::ofstream ofs{"GrapheOut.txt"};
+    if(!ofs)
+        std::cerr <<"error !"<<std::endl;
+    else
+    {
+        ofs << "digraph{" << std::endl << "size= \"50,50 \"" << "node [shape = circle];" <<std::endl;
+        for (auto val : m_sommets)
+        {
+            ofs << "LR_" << val->getId() <<"[pos=\"" << val->getx()/10 << "," << abs(val->gety() /10 -100) << "!" << "\"];" << std::endl;
+        }
+        for(auto val2 : m_aretes)
+        {
+            ofs << "LR_" << val2->getSommet(0)->getId() <<" -> "<< "LR_" << val2->getSommet(1)->getId()<<"[label =\"" <<val2->getPoids()[0]<<"/"<<val2->getPoids()[1]<<"\""<< "];" << std::endl;
+        }
+        ofs << "}" << std::endl;
+        ofs.close();
+    }
 }
 
 void Graphe::dessinerGraphSVG(Svgfile &svgout) const
 {
-    double x1;
-    double y1;
-    double x2;
-    double y2;
-       for(const auto val2: m_aretes)
-       {
-           x1=val2->getSommet(0)->getx();
-           y1=val2->getSommet(0)->gety();
-           x2=val2->getSommet(1)->getx();
-           y2=val2->getSommet(1)->gety();
-           svgout.addLine(x1, y1, x2, y2, "red");
-     /*      if((x1>x2)&&(y1>y2)) { svgout.addLine(x2+10,y2+10,x2+12.5,y2+17.5,"red");
-                                  svgout.addLine(x2+10,y2+10,x2+17.5,y2+12.5,"red"); }
-           if((x1==x2)&&(y1>y2)) { svgout.addLine(x2,y2+15,x2-5,y2+20,"red");
-                                  svgout.addLine(x2,y2+15,x2+5,y2+20,"red"); }
-           if((x1<x2)&&(y1>y2)) { svgout.addLine(x2-10,y2+10,x2-17.5,y2+12.5,"red");
-                                  svgout.addLine(x2-10,y2+10,x2-12.5,y2+17.5,"red"); }
-           if((x1>x2)&&(y1==y2)) { svgout.addLine(x2+15,y2,x2+20,y2-5,"red");
-                                  svgout.addLine(x2+15,y2,x2+20,y2+5,"red"); }
-           if((x1>x2)&&(y1<y2))  { svgout.addLine(x2+10,y2-10,x2+12.5,y2-17.5,"red");
-                                  svgout.addLine(x2+10,y2-10,x2+17.5,y2-12.5,"red"); }
-           if((x1==x2)&&(y1<y2)) { svgout.addLine(x2,y2-15,x2-5,y2-20,"red");
-                                  svgout.addLine(x2,y2-15,x2+5,y2-20,"red"); }
-           if((x1<x2)&&(y1<y2)) { svgout.addLine(x2-15,y2-15,x2-17.5,y2-22.5,"red");
-                                  svgout.addLine(x2-15,y2-15,x2-22.5,y2-17.5,"red"); }
-           if((x1<x2)&&(y1==y2)) { svgout.addLine(x2-15,y2,x2-20,y2+5,"red");
-                                  svgout.addLine(x2-15,y2,x2-20,y2-5,"red"); }  */
-           svgout.addText((x1+x2)/2,(y1+y2)/2 ,val2->getPoids()[0], "green");
-           svgout.addText((x1+x2)/2+7,(y1+y2)/2 ,";", "green");
-           svgout.addText((x1+x2)/2+10,(y1+y2)/2 ,val2->getPoids()[1], "green");
-           }
-       for(const auto val: m_sommets)
-       {
-             svgout.addDisk(val->getx(),val->gety(),15,"white");
-             svgout.addCircle(val->getx(), val->gety(), 15,2, "black");
-             svgout.addText(val->getx()-2.5, val->gety()+2.5, val->getId(), "purple");
-       }
+    for (auto elem : m_aretes)
+        elem->dessinerArete(svgout);
+    for (auto elem : m_sommets)
+        elem->dessinerSommet(svgout);
 }
 
 void Graphe::afficherPrim(const Graphe a,Svgfile &svgout)  const
@@ -363,9 +356,9 @@ void Graphe::afficherPrim(const Graphe a,Svgfile &svgout)  const
     std::cout << ")" << std::endl;
 }
 
- std::vector<Arete*> Graphe::getArete() const
+std::vector<Arete*> Graphe::getArete() const
 {
-return m_aretes;
+    return m_aretes;
 }
 
 Graphe::~Graphe()
@@ -387,32 +380,32 @@ void SVGrepere(Svgfile &svgout)
 
 
 std::vector<Solutions> Graphe::calculCout(std::vector<std::vector<bool>> solutions)
- {
+{
     std::vector<Solutions> tabSolus;
     float coutT1=0;
     float coutT2=0;
-    for(unsigned int i=0;i<solutions.size(); ++i)
+    for(unsigned int i=0; i<solutions.size(); ++i)
     {
         coutT1=0;
         coutT2=0;
 
-        for(unsigned int j=0;j<solutions[i].size(); ++j)
+        for(unsigned int j=0; j<solutions[i].size(); ++j)
         {
             if (solutions[i][j] == 1)
-           {
-            //On recupere l'indice de l'arete correspondant a ce bit
-            int iArete = abs(j-(m_aretes.size()-1));
-            coutT1= coutT1+ m_aretes[iArete]->getPoids()[0];
-            coutT2= coutT2+ m_aretes[iArete]->getPoids()[1];
-           }
+            {
+                //On recupere l'indice de l'arete correspondant a ce bit
+                int iArete = abs(j-(m_aretes.size()-1));
+                coutT1= coutT1+ m_aretes[iArete]->getPoids()[0];
+                coutT2= coutT2+ m_aretes[iArete]->getPoids()[1];
+            }
         }
         Solutions x(coutT1, coutT2, m_aretes, m_sommets);
         tabSolus.push_back(x);
     }
-   // std::cout << "cout 1 :"  << coutT1 << "cout 2 :"  << coutT2 <<std::endl;
+    // std::cout << "cout 1 :"  << coutT1 << "cout 2 :"  << coutT2 <<std::endl;
 
     return tabSolus;
- }
+}
 
 
 std::map<Sommet*,float> Graphe::dijkstra(Sommet *initial,int indicepoids)
@@ -427,20 +420,20 @@ std::map<Sommet*,float> Graphe::dijkstra(Sommet *initial,int indicepoids)
 
     while(marque.size() != m_sommets.size()) ///temps qu'on a pas marqués tout les sommets
     {
-        for(voisin : initial->getvoisins())   /// on parcours les voisins
+        for(auto voisin : initial->getvoisins())   /// on parcours les voisins
         {
             if(!marque.count(voisin))
-         {
-            std::multimap<float,Sommet*> ::iterator it;
-            std::multimap<float,Sommet*> ::iterator suppr;
+            {
+                std::multimap<float,Sommet*> ::iterator it;
+                std::multimap<float,Sommet*> ::iterator suppr;
 
-          float distance =0;
+                float distance =0;
 
-          for(a:m_aretes)
-          {
-            if((a->getSommet(0) == initial && a->getSommet(1) == voisin) || a->getSommet(1) == initial && a->getSommet(0) == voisin)
-            distance = distancetotal + a->getPoids()[indicepoids];
-          }
+                for(auto a : m_aretes)
+                {
+                    if((a->getSommet(0) == initial && a->getSommet(1) == voisin) || (a->getSommet(1) == initial && a->getSommet(0) == voisin))
+                        distance = distancetotal + a->getPoids()[indicepoids];
+                }
                 bool valider = true;
                 bool supprimer = false;
 
@@ -448,13 +441,13 @@ std::map<Sommet*,float> Graphe::dijkstra(Sommet *initial,int indicepoids)
                 {
                     if(voisin == (*it).second)
                     {
-                       if(distance >= (*it).first)
-                        valider = false;
-                       else
-                       {
-                         suppr = it;
-                         supprimer = true;
-                       }
+                        if(distance >= (*it).first)
+                            valider = false;
+                        else
+                        {
+                            suppr = it;
+                            supprimer = true;
+                        }
                     }
                 }
                 if(valider == true)
@@ -476,35 +469,36 @@ std::map<Sommet*,float> Graphe::dijkstra(Sommet *initial,int indicepoids)
         marque.insert({(*decouvert.begin()).second,(*decouvert.begin()).first});
         distancetotal = (*decouvert.begin()).first;
 
-        for(sommet_suivant:m_sommets)
+        for(auto sommet_suivant:m_sommets)
         {
             if(sommet_suivant == (*decouvert.begin()).second)
-            initial = sommet_suivant;
+                initial = sommet_suivant;
 
         }
         decouvert.erase(decouvert.begin());
-      }
+    }
 
-      return marque;
+    return marque;
 }
 
 std::vector<Graphe> Graphe::transformation(std::vector<std::vector<bool>> solutions)
 {
-std::vector<Graphe> tabGraphe;
-std::vector<Arete*> Aretes;
-   for(unsigned int i=0;i<solutions.size(); ++i)
-    { Aretes.clear();
-        for(unsigned int j=0;j<solutions[i].size(); ++j)
+    std::vector<Graphe> tabGraphe;
+    std::vector<Arete*> Aretes;
+    for(unsigned int i=0; i<solutions.size(); ++i)
+    {
+        Aretes.clear();
+        for(unsigned int j=0; j<solutions[i].size(); ++j)
         {
             if (solutions[i][j] == 1)
-           {
-            //On recupere l'indice de l'arete correspondant a ce bit
-            int iArete = abs(j-(m_aretes.size()-1));
-            Aretes.push_back(m_aretes[iArete]);
-
-           }
-        }//std::cout << "taille d'arete : " << Aretes.size() << std::endl;
-       tabGraphe.push_back({Aretes,m_sommets});
+            {
+                //On recupere l'indice de l'arete correspondant a ce bit
+                int iArete = abs(j-(m_aretes.size()-1));
+                Aretes.push_back(m_aretes[iArete]);
+            }
+        }
+        //std::cout << "taille d'arete : " << Aretes.size() << std::endl;
+        tabGraphe.push_back({Aretes,m_sommets});
     }
     return tabGraphe;
 }
@@ -516,34 +510,34 @@ std::vector<Solutions> CalculDijkstra(std::vector<Graphe> G)
     std::map<Sommet *,float> sommet_dijkstra;
     float x =0,y1 =0, y2=0;
 /////////////////////////////////////////////////////
-for(size_t i=0;i<G.size();++i)
-{
- G[i].afficher();
-}
+    for(size_t i=0; i<G.size(); ++i)
+    {
+        G[i].afficher();
+    }
 /////////////////////////////////////////////////////
 
-    for(s: G)
+    for(auto s: G)
     {
-          x =0,y1 =0,y2=0;
-          for(arete : s.getArete())
-         {
-           x = arete->getPoids()[0]+ x;
-         }
+        x =0,y1 =0,y2=0;
+        for(auto arete : s.getArete())
+        {
+            x = arete->getPoids()[0]+ x;
+        }
 
-          for(sommet : s.getm_sommets())
-          {
-              sommet_dijkstra = s.dijkstra(sommet,1);
-              for(dij : sommet_dijkstra)
-              {
-                  y1= y1+ dij.second;
-                  //std::cout << dij.second << std::endl;
-              }
+        for(auto sommet : s.getm_sommets())
+        {
+            sommet_dijkstra = s.dijkstra(sommet,1);
+            for(auto dij : sommet_dijkstra)
+            {
+                y1= y1+ dij.second;
+                //std::cout << dij.second << std::endl;
+            }
             //std::cout << "///////////////" << std::endl;
-          }
-        Solutions OUI (x,y1,s.getArete() ,s.getm_sommets());
+        }
+        Solutions OUI (x,y1,s.getArete(),s.getm_sommets());
         coordonnees.push_back(OUI);
     }
-    for(int i=0; i<coordonnees.size();++i)
+    for(unsigned int i=0; i<coordonnees.size(); ++i)
     {
         //std::cout << "X : " << coordonnees[i].getCout1() << "Y : " << coordonnees[i].getCout1() << std::endl;
     }

@@ -142,3 +142,78 @@
 	"solution.h"
 	<math.h>
 
+1555804653 source:e:\taurloc\documents\github\piscine\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+
+1555804653 e:\taurloc\documents\github\piscine\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555804653 e:\taurloc\documents\github\piscine\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+	"svgfile.h"
+
+1555804653 e:\taurloc\documents\github\piscine\arete.h
+	"sommet.h"
+	"svgfile.h"
+
+1555804653 e:\taurloc\documents\github\piscine\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"graphe.h"
+	"arete.h"
+	"svgfile.h"
+
+1555804752 source:e:\taurloc\documents\github\piscine\solution.cpp
+	"solution.h"
+
+1555603394 e:\taurloc\documents\github\piscine\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555603394 source:e:\taurloc\documents\github\piscine\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+
+1555804653 source:e:\taurloc\documents\github\piscine\arete.cpp
+	"arete.h"
+	<iostream>
+	<vector>
+
+1555804653 source:e:\taurloc\documents\github\piscine\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555804589 source:e:\taurloc\documents\github\piscine\graphe.cpp
+	<fstream>
+	<iostream>
+	<bitset>
+	<math.h>
+	"graphe.h"
+	"solution.h"
+	<map>
+

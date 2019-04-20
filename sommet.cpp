@@ -10,7 +10,13 @@ Sommet::Sommet(std::string id,double x,double y):m_id{id},m_x{x},m_y{y}
 {
 }
 
-void Sommet::ajouterVoisin(Sommet* voisin){
+void Sommet::dessinerSommet(Svgfile &svgout)   const
+{
+    svgout.addDisk(m_x, m_y, 12.5, "purple");
+}
+
+void Sommet::ajouterVoisin(Sommet* voisin)
+{
     m_voisins.push_back(voisin);
 }
 
@@ -27,6 +33,11 @@ void Sommet::afficherData() const
     }
 
     std::cout << std::endl;
+}
+
+std::vector< Sommet*> Sommet::getvoisins()  const
+{
+    return m_voisins;
 }
 
 std::string Sommet::getId() const
