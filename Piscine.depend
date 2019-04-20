@@ -1,30 +1,61 @@
 # depslib dependency file v1.0
-1555345128 source:c:\users\personnic william\desktop\informatique\projetpiscine\arete.cpp
+1555620230 source:c:\users\personnic william\desktop\informatique\test heritage\arete.cpp
 	"arete.h"
 	<iostream>
+	<vector>
 
-1555346701 c:\users\personnic william\desktop\informatique\projetpiscine\arete.h
+1555620252 c:\users\personnic william\desktop\informatique\test heritage\arete.h
 	"sommet.h"
 
-1555516358 c:\users\personnic william\desktop\informatique\projetpiscine\sommet.h
+1555759497 c:\users\personnic william\desktop\informatique\test heritage\sommet.h
 	<string>
 	<vector>
 	<unordered_map>
 	<unordered_set>
 
-1555510408 source:c:\users\personnic william\desktop\informatique\projetpiscine\main.cpp
+1555771641 source:c:\users\personnic william\desktop\informatique\test heritage\graphe.cpp
+	<fstream>
 	<iostream>
+	<bitset>
+	<math.h>
 	"graphe.h"
-	"sommet.h"
-	"arete.h"
+	"solution.h"
+	<map>
 
-1555515405 c:\users\personnic william\desktop\informatique\projetpiscine\graphe.h
+1555771641 c:\users\personnic william\desktop\informatique\test heritage\graphe.h
 	<string>
 	<unordered_map>
 	"sommet.h"
 	"arete.h"
+	"svgfile.h"
 
-1555516343 source:c:\users\personnic william\desktop\informatique\projetpiscine\sommet.cpp
+1555603394 c:\users\personnic william\desktop\informatique\test heritage\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555771641 c:\users\personnic william\desktop\informatique\test heritage\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"graphe.h"
+	"arete.h"
+	"svgfile.h"
+
+1555773522 source:c:\users\personnic william\desktop\informatique\test heritage\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+
+1555602954 source:c:\users\personnic william\desktop\informatique\test heritage\sommet.cpp
 	<iostream>
 	<queue>
 	<stack>
@@ -33,11 +64,11 @@
 	<unordered_set>
 	"sommet.h"
 
-1555516333 source:c:\users\personnic william\desktop\informatique\projetpiscine\graphe.cpp
-	<fstream>
+1555603394 source:c:\users\personnic william\desktop\informatique\test heritage\svgfile.cpp
+	"svgfile.h"
 	<iostream>
-	"graphe.h"
-	<algorithm>
-	<map>
-	"math.h"
+	<sstream>
+
+1555773890 source:c:\users\personnic william\desktop\informatique\test heritage\solution.cpp
+	"solution.h"
 
