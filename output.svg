@@ -7,4 +7,22 @@
 <line x1="600" y1="50" x2="605" y2="55" stroke="black" />
 <line x1="800" y1="250" x2="795" y2="245" stroke="black" />
 <line x1="800" y1="250" x2="795" y2="255" stroke="black" />
-<text x="560" y="40" fill="black" >
+<text x="560" y="40" fill="black" >cout 1</text>
+<text x="810" y="250" fill="black" >cout 2</text>
+<circle cx="613" cy="234" r="0.4" fill="green" />
+<circle cx="611" cy="230" r="0.4" fill="green" />
+<circle cx="622" cy="234" r="0.4" fill="red" />
+<circle cx="616" cy="230" r="0.4" fill="red" />
+<circle cx="619" cy="207" r="0.4" fill="red" />
+<circle cx="619" cy="234" r="0.4" fill="red" />
+<circle cx="625" cy="200" r="0.4" fill="red" />
+<circle cx="621" cy="213" r="0.4" fill="red" />
+<circle cx="617" cy="230" r="0.4" fill="red" />
+<circle cx="624" cy="209" r="0.4" fill="red" />
+<circle cx="619" cy="214" r="0.4" fill="red" />
+<circle cx="619" cy="214" r="0.4" fill="red" />
+<circle cx="616" cy="234" r="0.4" fill="red" />
+<circle cx="618" cy="230" r="0.4" fill="red" />
+
+
+</svg>

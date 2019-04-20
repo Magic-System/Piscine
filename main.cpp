@@ -15,23 +15,36 @@
 int main()
 {
     Svgfile svgout("output.svg");
-    //Graphe g{"files/broadway.txt", "files/broadway_weights_0.txt"};
+    Graphe g{"files/broadway.txt", "files/broadway_weights_0.txt"};
     //Graphe g{"files/cubetown.txt", "files/cubetown_weights_0.txt"};
     //Graphe g{"files/triville.txt", "files/triville_weights_0.txt"};
-    Graphe g{"files/manhattan.txt", "files/manhattan_weights_0.txt"};
+    //Graphe g{"files/manhattan.txt", "files/manhattan_weights_0.txt"};
     g.afficher();
 
     //g.afficherPrim(g.prim());
     //g.afficherPrim(g.prim("0", 1));
     SVGrepere(svgout);
-    std::vector<std::vector<bool>> test = g.sol_admissible(svgout);
-    std::vector<Solutions> tabSolus = g.calculCout(test);
+    std::vector<std::vector<bool>> Partie2 = g.sol_admissible(0);
+    std::vector<Solutions> tabSolusP2 = g.calculCout(Partie2);
+
+    std::vector<std::vector<bool>> Partie3 = g.sol_admissible(1);
+    std::vector<Graphe> tabGrapheP3 = g.transformation(Partie3);
+    pareto(CalculDijkstra(tabGrapheP3),svgout);
+   /* for(int i =0; i<tabGrapheP3.size();++i)
+    {
+    std::cout<< tabGrapheP3[i].getArete().size() << std::endl;
+    } */
+
+
+    //std::vector<std::pair<float,float>>temp = bi_objectif(tabSolus,svgout) ;
+    //paretoDijkstra(Partie3 , svgout);
+
+
    /* for(int i = 0; i< tabSolus.size();++i)
     {
         tabSolus[i].afficher();
     } */
-   // toutDessiner(tabSolus,svgout);
-    pareto(tabSolus,svgout);
+    //toutDessiner(tabSolus,svgout);
 
 /*
     for (auto elem : test)
@@ -41,6 +54,7 @@ int main()
         std::cout << std::endl;
     }
 */
-    std::cout << test.size() << "   solutions" << std::endl;
+    std::cout <<"Partie 2 : " << Partie2.size() << "   solutions" << std::endl;
+    std::cout <<"Partie 3 : " << Partie3.size() << "   solutions" << std::endl;
     return 0;
 }

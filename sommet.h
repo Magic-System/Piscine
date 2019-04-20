@@ -17,6 +17,12 @@ class Sommet
         double getx() const;
         double gety() const;
 
+         std::vector< Sommet*> getvoisins()
+        {
+            return m_voisins;
+        }
+
+
 
 
         ~Sommet();

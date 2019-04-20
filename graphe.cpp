@@ -3,6 +3,16 @@
 #include <bitset>
 #include <math.h>
 #include "graphe.h"
+#include "solution.h"
+#include <map>
+
+Graphe::Graphe(std::vector<Arete*> aretes, std::vector<Sommet*> sommets) : m_aretes {aretes}, m_sommets {sommets}
+{}
+
+std::vector<Sommet*> Graphe::getm_sommets() const
+{
+    return m_sommets;
+}
 
 Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
     std::ifstream ifs{nomFichier};
@@ -58,6 +68,7 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids){
                 s2 = elem;
         }
         s1->ajouterVoisin(s2);
+        s2->ajouterVoisin(s1);
 
         std::vector<float> poids;
 
@@ -92,15 +103,13 @@ void Graphe::afficher() const
     }
 }
 
-std::vector<std::vector<bool>> Graphe::sol_admissible(Svgfile &svgout)
+std::vector<std::vector<bool>> Graphe::sol_admissible(bool cycle)
 {
     unsigned int m = m_aretes.size();
     //Solutions filtré une premiere fois pour garder seulement les solutions utilisant n-1 aretes avec n egal l'ordre du graphe (nb de sommets)
     //std::vector<std::vector<bool>> solutions_temp;
     //Solutions filtré pour ne garder que les solutions qui ne créee pas de cycle
     std::vector<std::vector<bool>> solutions;
-
-
     for (unsigned int i=0; i < pow(2, m); ++i)
     {
         unsigned int iTemp = i, k = 0;
@@ -119,12 +128,20 @@ std::vector<std::vector<bool>> Graphe::sol_admissible(Svgfile &svgout)
                     temp.push_back(0);
             }
         }
-        if (k == m_sommets.size()-1)
-        {
-            if (rech_connexe(temp) == true)
-                solutions.push_back(temp);
+        if(cycle == 1)
+        {if (k >= m_sommets.size()-1)
+           {
+              if (rech_connexe(temp) == true) solutions.push_back(temp);
+           }
         }
-    }
+        else
+        {if (k == m_sommets.size()-1)
+            {
+            if (rech_connexe(temp) == true) solutions.push_back(temp);
+            }
+        }
+}
+
     //On retourne les solutions filtre
     return solutions;
 }
@@ -259,67 +276,6 @@ bool Graphe::rech_connexe(std::vector<bool> combinaison)    const
     return connex;
 }
 
-/* bool Graphe::rech_connexe(std::vector<bool> combinaison)    const
-{
-    std::unordered_map<std::string,int> tabConnex;
-    bool connex = false;
-    int c=0;
-
-    //On rempli le tableau de connexite avec des valeurs differentes pour chaque sommet
-    for (int i =0; i< m_sommets.size(); ++i)
-        {tabConnex.insert({m_sommets[c]->getId(),i});
-         ++c;}
-    //On parcours notre combinaire binaire
-    for (unsigned int i=0;i<combinaison.size(); ++i)
-    {
-        //Si le bit est a 1
-        if (combinaison[i] == 1)
-        {
-            //On recupere l'indice de l'arete correspondant a ce bit
-            int iArete = abs(i-(m_aretes.size()-1));
-            //On recupere les id des sommets aux extremites de l'arete
-            std::string id1=m_aretes[iArete]->getSommet(0)->getId();
-            std::string id2=m_aretes[iArete]->getSommet(1)->getId();
-
-        //    int id1 = std::stoi(m_aretes[iArete]->getSommet(0)->getId());
-        //   int id2 = std::stoi(m_aretes[iArete]->getSommet(1)->getId());
-
-            //On verifie notre tableau de connexité pour savoir si les deux sommets font partie de la meme composante connexe
-            //Si il ne sont pas deja ensemble, on les met ensemble
-            if (tabConnex[id1] != tabConnex[id2])
-            {
-              tabConnex[id1] = (int)m_sommets.size();
-              tabConnex[id2] = (int)m_sommets.size();
-              for(int i=0;i<tabConnex.size();++i)
-              {
-
-                 if (tabConnex[id1] != tabConnex[id2])
-                 {
-                    tabConnex[id1] = (int)m_aretes.size();
-                    tabConnex[id2] = (int)m_aretes.size();
-                 }
-
-              }
-            }
-        }
-    }
-    int compteur=0;
-   // int test = tabConnex.begin()->second;
-   //On compte le nombre de sommet ayant la meme composante connexe
-     for(auto it = tabConnex.begin(); it!= tabConnex.end(); it++)
-    {
-              if (it->second == tabConnex.begin()->second) compteur++;
-    }
-
-    //Si tous les sommets sont dans la meme connexe on return true, sinon false
-    if (compteur == tabConnex.size())
-        connex = true;
-    else
-        connex = false;
-
-    return connex;
-}
-*/
 void Graphe::dessinerGraph() const
 {
    std::ofstream ofs{"GrapheOut.txt"};
@@ -450,10 +406,138 @@ std::vector<Solutions> Graphe::calculCout(std::vector<std::vector<bool>> solutio
             coutT2= coutT2+ m_aretes[iArete]->getPoids()[1];
            }
         }
-        Solutions x(coutT1, coutT2);
+        Solutions x(coutT1, coutT2, m_aretes, m_sommets);
         tabSolus.push_back(x);
     }
    // std::cout << "cout 1 :"  << coutT1 << "cout 2 :"  << coutT2 <<std::endl;
 
     return tabSolus;
  }
+
+
+std::map<Sommet*,float> Graphe::dijkstra(Sommet *initial,int indicepoids)
+{
+    std::unordered_map<Sommet*,Sommet*> l_pred;
+    std::multimap<float, Sommet*> decouvert;
+    std::map<Sommet*,float> marque;
+
+    float distancetotal = 0;
+
+    marque.insert({initial,distancetotal});
+
+    while(marque.size() != m_sommets.size())
+    {
+        for(voisin : initial->getvoisins())
+        {
+            if(!marque.count(voisin))
+         {
+            std::multimap<float,Sommet*> ::iterator it;
+            std::multimap<float,Sommet*> ::iterator suppr;
+
+          float distance =0;
+
+          for(a:m_aretes)
+          {
+            if((a->getSommet(0) == initial && a->getSommet(1) == voisin) || a->getSommet(1) == initial && a->getSommet(0) == voisin)
+            distance = distancetotal + a->getPoids()[indicepoids];
+          }
+                bool valider = true;
+                bool supprimer = false;
+
+                for(it = decouvert.begin(); it!= decouvert.end(); ++it)
+                {
+                    if(voisin == (*it).second)
+                    {
+                       if(distance >= (*it).first)
+                        valider = false;
+                       else
+                       {
+                         suppr = it;
+                         supprimer = true;
+                       }
+                    }
+                }
+                if(valider == true)
+                {
+                    if(supprimer == true)
+                    {
+                        decouvert.erase(suppr);
+                        l_pred.erase(l_pred.find(voisin));
+                    }
+
+                    decouvert.insert({distance,voisin});
+                    l_pred.insert({voisin,initial});
+                }
+
+                distance = distancetotal;
+            }
+        }
+
+        marque.insert({(*decouvert.begin()).second,(*decouvert.begin()).first});
+        distancetotal = (*decouvert.begin()).first;
+
+        for(sommet_suivant:m_sommets)
+        {
+            if(sommet_suivant == (*decouvert.begin()).second)
+            initial = sommet_suivant;
+
+        }
+        decouvert.erase(decouvert.begin());
+      }
+
+      return marque;
+}
+
+std::vector<Graphe> Graphe::transformation(std::vector<std::vector<bool>> solutions)
+{
+std::vector<Graphe> tabGraphe;
+std::vector<Arete*> Aretes;
+    for(unsigned int i=0;i<solutions.size(); ++i)
+    { Aretes.clear();
+        for(unsigned int j=0;j<solutions[i].size(); ++j)
+        {
+            if (solutions[i][j] == 1)
+           {
+            //On recupere l'indice de l'arete correspondant a ce bit
+            int iArete = abs(j-(m_aretes.size()-1));
+            Aretes.push_back(m_aretes[iArete]);
+           }
+        }
+       tabGraphe.push_back({Aretes,m_sommets});
+    }
+    return tabGraphe;
+}
+
+
+std::vector<Solutions> CalculDijkstra(std::vector<Graphe> G)
+{
+    std::vector<Solutions> coordonnees;
+    std::map<Sommet *,float> sommet_dijkstra;
+    for(s: G)
+    {
+          double x =0,y =0;
+          for(arete : s.getArete())
+         {
+           x = arete->getPoids()[0]+x;
+         }
+
+          for(sommet : s.getm_sommets())
+          {
+              sommet_dijkstra = s.dijkstra(sommet,1);
+
+              for(dij : sommet_dijkstra)
+              {
+                  y= y+ dij.second;
+              }
+          }
+        Solutions OUI (x,y,s.getArete() ,s.getm_sommets());
+        coordonnees.push_back(OUI);
+    }
+    for(int i=0; i<coordonnees.size();++i)
+    {
+        std::cout << "X : " << coordonnees[i].getCout1() << "Y : " << coordonnees[i].getCout1() << std::endl;
+    }
+
+    return coordonnees;
+}
+
