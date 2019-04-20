@@ -116,7 +116,7 @@ std::vector<std::vector<bool>> Graphe::sol_admissible(bool cycle)
         std::vector<bool> temp;
         for (unsigned int j = m; j>0; --j)
         {
-            if (k <= m_sommets.size()-1)
+            if(temp.size() < m_aretes.size())
             {
                 if (iTemp-pow(2, j-1) >= 0)
                 {
@@ -423,11 +423,11 @@ std::map<Sommet*,float> Graphe::dijkstra(Sommet *initial,int indicepoids)
 
     float distancetotal = 0;
 
-    marque.insert({initial,distancetotal});
+    marque.insert({initial,distancetotal}); /// on place le premier point dans les marqués
 
-    while(marque.size() != m_sommets.size())
+    while(marque.size() != m_sommets.size()) ///temps qu'on a pas marqués tout les sommets
     {
-        for(voisin : initial->getvoisins())
+        for(voisin : initial->getvoisins())   /// on parcours les voisins
         {
             if(!marque.count(voisin))
          {
@@ -492,7 +492,7 @@ std::vector<Graphe> Graphe::transformation(std::vector<std::vector<bool>> soluti
 {
 std::vector<Graphe> tabGraphe;
 std::vector<Arete*> Aretes;
-    for(unsigned int i=0;i<solutions.size(); ++i)
+   for(unsigned int i=0;i<solutions.size(); ++i)
     { Aretes.clear();
         for(unsigned int j=0;j<solutions[i].size(); ++j)
         {
@@ -501,8 +501,9 @@ std::vector<Arete*> Aretes;
             //On recupere l'indice de l'arete correspondant a ce bit
             int iArete = abs(j-(m_aretes.size()-1));
             Aretes.push_back(m_aretes[iArete]);
+
            }
-        }
+        }//std::cout << "taille d'arete : " << Aretes.size() << std::endl;
        tabGraphe.push_back({Aretes,m_sommets});
     }
     return tabGraphe;
@@ -513,29 +514,38 @@ std::vector<Solutions> CalculDijkstra(std::vector<Graphe> G)
 {
     std::vector<Solutions> coordonnees;
     std::map<Sommet *,float> sommet_dijkstra;
+    float x =0,y1 =0, y2=0;
+/////////////////////////////////////////////////////
+for(size_t i=0;i<G.size();++i)
+{
+ G[i].afficher();
+}
+/////////////////////////////////////////////////////
+
     for(s: G)
     {
-          double x =0,y =0;
+          x =0,y1 =0,y2=0;
           for(arete : s.getArete())
          {
-           x = arete->getPoids()[0]+x;
+           x = arete->getPoids()[0]+ x;
          }
 
           for(sommet : s.getm_sommets())
           {
               sommet_dijkstra = s.dijkstra(sommet,1);
-
               for(dij : sommet_dijkstra)
               {
-                  y= y+ dij.second;
+                  y1= y1+ dij.second;
+                  //std::cout << dij.second << std::endl;
               }
+            //std::cout << "///////////////" << std::endl;
           }
-        Solutions OUI (x,y,s.getArete() ,s.getm_sommets());
+        Solutions OUI (x,y1,s.getArete() ,s.getm_sommets());
         coordonnees.push_back(OUI);
     }
     for(int i=0; i<coordonnees.size();++i)
     {
-        std::cout << "X : " << coordonnees[i].getCout1() << "Y : " << coordonnees[i].getCout1() << std::endl;
+        //std::cout << "X : " << coordonnees[i].getCout1() << "Y : " << coordonnees[i].getCout1() << std::endl;
     }
 
     return coordonnees;

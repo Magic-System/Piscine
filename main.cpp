@@ -29,7 +29,15 @@ int main()
 
     std::vector<std::vector<bool>> Partie3 = g.sol_admissible(1);
     std::vector<Graphe> tabGrapheP3 = g.transformation(Partie3);
-    pareto(CalculDijkstra(tabGrapheP3),svgout);
+
+
+    std::vector<Solutions> tabSolusP3=CalculDijkstra(tabGrapheP3);
+    for(int i =0;i < tabSolusP3.size();++i)
+    {
+        tabSolusP3[i].afficher();
+    }
+     pareto(tabSolusP3,svgout);
+
    /* for(int i =0; i<tabGrapheP3.size();++i)
     {
     std::cout<< tabGrapheP3[i].getArete().size() << std::endl;

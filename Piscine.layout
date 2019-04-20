@@ -2,74 +2,79 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Release" />
-	<File name="arete.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="sommet.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="470" topLine="18" />
+			<Cursor1 position="444" topLine="6" />
 		</Cursor>
-	</File>
-	<File name="graphe.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="17793" topLine="156" />
-		</Cursor>
-		<Folding>
-			<Collapse line="12" />
-			<Collapse line="16" />
-			<Collapse line="88" />
-			<Collapse line="106" />
-			<Collapse line="151" />
-			<Collapse line="205" />
-			<Collapse line="300" />
-			<Collapse line="341" />
-			<Collapse line="366" />
-			<Collapse line="371" />
-			<Collapse line="376" />
-			<Collapse line="418" />
-			<Collapse line="491" />
-		</Folding>
 	</File>
 	<File name="graphe.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1928" topLine="26" />
+			<Cursor1 position="1928" topLine="13" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="arete.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1040" topLine="23" />
+			<Cursor1 position="592" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="solution.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2941" topLine="37" />
+			<Cursor1 position="1872" topLine="40" />
 		</Cursor>
 		<Folding>
-			<Collapse line="53" />
+			<Collapse line="25" />
+			<Collapse line="38" />
+			<Collapse line="43" />
+			<Collapse line="48" />
 			<Collapse line="86" />
 			<Collapse line="115" />
 		</Folding>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1094" topLine="23" />
+		</Cursor>
 	</File>
 	<File name="svgfile.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="sommet.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="arete.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="830" topLine="14" />
+			<Cursor1 position="470" topLine="9" />
 		</Cursor>
 	</File>
-	<File name="sommet.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="graphe.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="444" topLine="6" />
+			<Cursor1 position="14983" topLine="71" />
 		</Cursor>
+		<Folding>
+			<Collapse line="16" />
+			<Collapse line="88" />
+			<Collapse line="106" />
+			<Collapse line="151" />
+			<Collapse line="205" />
+			<Collapse line="230" />
+			<Collapse line="279" />
+			<Collapse line="300" />
+			<Collapse line="341" />
+			<Collapse line="366" />
+			<Collapse line="371" />
+			<Collapse line="376" />
+			<Collapse line="389" />
+			<Collapse line="418" />
+			<Collapse line="491" />
+		</Folding>
 	</File>
 	<File name="solution.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1047" topLine="9" />
+			<Cursor1 position="1047" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="arete.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="sommet.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="592" topLine="0" />
+			<Cursor1 position="830" topLine="14" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
