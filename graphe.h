@@ -15,6 +15,7 @@ public:
     //format du fichier ordre/liste des sommets/taille/liste des arêtes
     Graphe(std::string, std::string);
     Graphe(std::vector<Arete*> aretes, std::vector<Sommet*> sommets);
+    Graphe(std::vector<Arete*> aretes);
     Graphe() {};
     void afficher() const;
     std::vector<std::vector<bool>> sol_admissible(bool cycle);

@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include "svgfile.h"
 
+
 class Sommet
 {
 public:
@@ -13,6 +14,7 @@ public:
     Sommet(std::string,double,double);
 
     void ajouterVoisin(Sommet*);
+    void retirerVoisin(Sommet *voisin);
     void afficherData() const;
     std::string getId() const;
     double getx() const;

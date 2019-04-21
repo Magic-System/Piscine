@@ -6,6 +6,7 @@
 #include "solution.h"
 #include <map>
 
+
 Graphe::Graphe(std::vector<Arete*> aretes, std::vector<Sommet*> sommets)
 {
     for (auto elem : aretes)
@@ -14,7 +15,6 @@ Graphe::Graphe(std::vector<Arete*> aretes, std::vector<Sommet*> sommets)
     for (auto elem : sommets)
         m_sommets.push_back(elem);
 }
-
 std::vector<Sommet*> Graphe::getm_sommets() const
 {
     return m_sommets;
@@ -105,6 +105,8 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids)
         m_aretes.push_back(new Arete(id, s1, s2, poids));
     }
 }
+
+
 
 void Graphe::afficher() const
 {
@@ -416,24 +418,29 @@ std::map<Sommet*,float> Graphe::dijkstra(Sommet *initial,int indicepoids)
 
     float distancetotal = 0;
 
-    marque.insert({initial,distancetotal}); /// on place le premier point dans les marqués
+    marque.insert({initial,distancetotal});/// on place le premier point dans les marqués
 
     while(marque.size() != m_sommets.size()) ///temps qu'on a pas marqués tout les sommets
     {
         for(auto voisin : initial->getvoisins())   /// on parcours les voisins
         {
-            if(!marque.count(voisin))
+            float distance =0;
+            bool trouver =false;
+
+            for(auto a : m_aretes)
+                {
+                    if((a->getSommet(0) == initial && a->getSommet(1) == voisin) || (a->getSommet(1) == initial && a->getSommet(0) == voisin))
+                    {
+                        distance = distancetotal + a->getPoids()[indicepoids];
+                        trouver = true;
+                    };
+                }
+
+            if(!marque.count(voisin) && trouver == true)
             {
                 std::multimap<float,Sommet*> ::iterator it;
                 std::multimap<float,Sommet*> ::iterator suppr;
 
-                float distance =0;
-
-                for(auto a : m_aretes)
-                {
-                    if((a->getSommet(0) == initial && a->getSommet(1) == voisin) || (a->getSommet(1) == initial && a->getSommet(0) == voisin))
-                        distance = distancetotal + a->getPoids()[indicepoids];
-                }
                 bool valider = true;
                 bool supprimer = false;
 
@@ -509,16 +516,11 @@ std::vector<Solutions> CalculDijkstra(std::vector<Graphe> G)
     std::vector<Solutions> coordonnees;
     std::map<Sommet *,float> sommet_dijkstra;
     float x =0,y1 =0, y2=0;
-/////////////////////////////////////////////////////
-    for(size_t i=0; i<G.size(); ++i)
-    {
-        G[i].afficher();
-    }
-/////////////////////////////////////////////////////
 
     for(auto s: G)
     {
         x =0,y1 =0,y2=0;
+
         for(auto arete : s.getArete())
         {
             x = arete->getPoids()[0]+ x;
@@ -527,10 +529,11 @@ std::vector<Solutions> CalculDijkstra(std::vector<Graphe> G)
         for(auto sommet : s.getm_sommets())
         {
             sommet_dijkstra = s.dijkstra(sommet,1);
+
             for(auto dij : sommet_dijkstra)
             {
                 y1= y1+ dij.second;
-                //std::cout << dij.second << std::endl;
+                std::cout << dij.second << std::endl;
             }
             //std::cout << "///////////////" << std::endl;
         }
