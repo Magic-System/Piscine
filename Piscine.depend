@@ -1,48 +1,61 @@
 # depslib dependency file v1.0
-1555499584 source:c:\users\taurloc\desktop\projet piscine\piscine-master\arete.cpp
+1555620230 source:c:\users\personnic william\desktop\informatique\test heritage\arete.cpp
 	"arete.h"
 	<iostream>
 	<vector>
 
-1555499578 c:\users\taurloc\desktop\projet piscine\piscine-master\arete.h
+1555620252 c:\users\personnic william\desktop\informatique\test heritage\arete.h
 	"sommet.h"
 
-1555499623 c:\users\taurloc\desktop\projet piscine\piscine-master\sommet.h
+1555759497 c:\users\personnic william\desktop\informatique\test heritage\sommet.h
 	<string>
 	<vector>
 	<unordered_map>
 	<unordered_set>
 
-1555499610 source:c:\users\taurloc\desktop\projet piscine\piscine-master\graphe.cpp
+1555770925 source:c:\users\personnic william\desktop\informatique\test heritage\graphe.cpp
 	<fstream>
 	<iostream>
 	<bitset>
 	<math.h>
 	"graphe.h"
-	<algorithm>
+	"solution.h"
+	<map>
 
-1555499176 c:\users\taurloc\desktop\projet piscine\piscine-master\graphe.h
+1555771641 c:\users\personnic william\desktop\informatique\test heritage\graphe.h
 	<string>
 	<unordered_map>
 	"sommet.h"
 	"arete.h"
 	"svgfile.h"
 
-1555456934 c:\users\taurloc\desktop\projet piscine\piscine-master\svgfile.h
+1555603394 c:\users\personnic william\desktop\informatique\test heritage\svgfile.h
 	<string>
 	<fstream>
 	<set>
 	<vector>
 	<map>
 
-1555499702 source:c:\users\taurloc\desktop\projet piscine\piscine-master\main.cpp
+1555771641 c:\users\personnic william\desktop\informatique\test heritage\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"graphe.h"
+	"arete.h"
+	"svgfile.h"
+
+1555769307 source:c:\users\personnic william\desktop\informatique\test heritage\main.cpp
 	<iostream>
 	"graphe.h"
 	"sommet.h"
 	"arete.h"
 	"svgfile.h"
+	"solution.h"
+	<math.h>
 
-1555456934 source:c:\users\taurloc\desktop\projet piscine\piscine-master\sommet.cpp
+1555602954 source:c:\users\personnic william\desktop\informatique\test heritage\sommet.cpp
 	<iostream>
 	<queue>
 	<stack>
@@ -51,7 +64,410 @@
 	<unordered_set>
 	"sommet.h"
 
-1555456934 source:c:\users\taurloc\desktop\projet piscine\piscine-master\svgfile.cpp
+1555603394 source:c:\users\personnic william\desktop\informatique\test heritage\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+
+1555620230 source:c:\users\titig\desktop\ece ing1\informatique\test heritage\arete.cpp
+	"arete.h"
+	<iostream>
+	<vector>
+
+1555620252 c:\users\titig\desktop\ece ing1\informatique\test heritage\arete.h
+	"sommet.h"
+
+1555759497 c:\users\titig\desktop\ece ing1\informatique\test heritage\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+
+1555602954 source:c:\users\titig\desktop\ece ing1\informatique\test heritage\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555603394 source:c:\users\titig\desktop\ece ing1\informatique\test heritage\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+
+1555603394 c:\users\titig\desktop\ece ing1\informatique\test heritage\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555798615 source:c:\users\titig\desktop\ece ing1\informatique\test heritage\graphe.cpp
+	<fstream>
+	<iostream>
+	<bitset>
+	<math.h>
+	"graphe.h"
+	"solution.h"
+	<map>
+
+1555782807 c:\users\titig\desktop\ece ing1\informatique\test heritage\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555780533 c:\users\titig\desktop\ece ing1\informatique\test heritage\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"graphe.h"
+	"arete.h"
+	"svgfile.h"
+
+1555780533 source:c:\users\titig\desktop\ece ing1\informatique\test heritage\solution.cpp
+	"solution.h"
+
+1555796045 source:c:\users\titig\desktop\ece ing1\informatique\test heritage\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+
+1555804653 source:e:\taurloc\documents\github\piscine\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+
+1555804653 e:\taurloc\documents\github\piscine\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555804653 e:\taurloc\documents\github\piscine\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+	"svgfile.h"
+
+1555804653 e:\taurloc\documents\github\piscine\arete.h
+	"sommet.h"
+	"svgfile.h"
+
+1555804653 e:\taurloc\documents\github\piscine\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"graphe.h"
+	"arete.h"
+	"svgfile.h"
+
+1555804752 source:e:\taurloc\documents\github\piscine\solution.cpp
+	"solution.h"
+
+1555603394 e:\taurloc\documents\github\piscine\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555603394 source:e:\taurloc\documents\github\piscine\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+
+1555804653 source:e:\taurloc\documents\github\piscine\arete.cpp
+	"arete.h"
+	<iostream>
+	<vector>
+
+1555804653 source:e:\taurloc\documents\github\piscine\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555804589 source:e:\taurloc\documents\github\piscine\graphe.cpp
+	<fstream>
+	<iostream>
+	<bitset>
+	<math.h>
+	"graphe.h"
+	"solution.h"
+	<map>
+
+1555865337 source:c:\users\personnic william\desktop\informatique\piscine-ft_partie3\arete.cpp
+	"arete.h"
+	<iostream>
+	<vector>
+
+1555804833 c:\users\personnic william\desktop\informatique\piscine-ft_partie3\arete.h
+	"sommet.h"
+	"svgfile.h"
+
+1555861876 c:\users\personnic william\desktop\informatique\piscine-ft_partie3\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+	"svgfile.h"
+
+1555804833 c:\users\personnic william\desktop\informatique\piscine-ft_partie3\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555865337 source:c:\users\personnic william\desktop\informatique\piscine-ft_partie3\graphe.cpp
+	<fstream>
+	<iostream>
+	<bitset>
+	<math.h>
+	"graphe.h"
+	"solution.h"
+	<map>
+
+1555861876 c:\users\personnic william\desktop\informatique\piscine-ft_partie3\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555804833 c:\users\personnic william\desktop\informatique\piscine-ft_partie3\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"graphe.h"
+	"arete.h"
+	"svgfile.h"
+
+1555863906 source:c:\users\personnic william\desktop\informatique\piscine-ft_partie3\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+
+1555861320 source:c:\users\personnic william\desktop\informatique\piscine-ft_partie3\solution.cpp
+	"solution.h"
+
+1555863089 source:c:\users\personnic william\desktop\informatique\piscine-ft_partie3\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555804833 source:c:\users\personnic william\desktop\informatique\piscine-ft_partie3\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+
+1555861601 source:c:\users\personnic william\desktop\informatique\piscine-ft_partie3\menu.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+	"windows.h"
+
+1555865337 source:c:\users\titig\desktop\piscine-ft_partie3\arete.cpp
+	"arete.h"
+	<iostream>
+	<vector>
+
+1555804833 c:\users\titig\desktop\piscine-ft_partie3\arete.h
+	"sommet.h"
+	"svgfile.h"
+
+1555861876 c:\users\titig\desktop\piscine-ft_partie3\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+	"svgfile.h"
+
+1555804833 c:\users\titig\desktop\piscine-ft_partie3\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555870388 source:c:\users\titig\desktop\piscine-ft_partie3\graphe.cpp
+	<fstream>
+	<iostream>
+	<bitset>
+	<math.h>
+	"graphe.h"
+	"solution.h"
+	<map>
+
+1555861876 c:\users\titig\desktop\piscine-ft_partie3\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555872084 c:\users\titig\desktop\piscine-ft_partie3\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"graphe.h"
+	"arete.h"
+	"svgfile.h"
+
+1555863906 source:c:\users\titig\desktop\piscine-ft_partie3\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+
+1555872020 source:c:\users\titig\desktop\piscine-ft_partie3\menu.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+	"windows.h"
+
+1555872135 source:c:\users\titig\desktop\piscine-ft_partie3\solution.cpp
+	"solution.h"
+
+1555863089 source:c:\users\titig\desktop\piscine-ft_partie3\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555804833 source:c:\users\titig\desktop\piscine-ft_partie3\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+
+1555878565 source:c:\users\titig\desktop\piscine_final\arete.cpp
+	"arete.h"
+	<iostream>
+	<vector>
+
+1555878555 c:\users\titig\desktop\piscine_final\arete.h
+	"sommet.h"
+	"svgfile.h"
+
+1555878398 c:\users\titig\desktop\piscine_final\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+	"svgfile.h"
+
+1555804833 c:\users\titig\desktop\piscine_final\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555880529 source:c:\users\titig\desktop\piscine_final\graphe.cpp
+	<fstream>
+	<iostream>
+	<bitset>
+	<math.h>
+	"graphe.h"
+	"solution.h"
+	<map>
+
+1555880529 c:\users\titig\desktop\piscine_final\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555873428 c:\users\titig\desktop\piscine_final\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"graphe.h"
+	"arete.h"
+	"svgfile.h"
+
+1555863906 source:c:\users\titig\desktop\piscine_final\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+
+1555880891 source:c:\users\titig\desktop\piscine_final\menu.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+	"windows.h"
+
+1555878398 source:c:\users\titig\desktop\piscine_final\solution.cpp
+	"solution.h"
+
+1555878398 source:c:\users\titig\desktop\piscine_final\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555804833 source:c:\users\titig\desktop\piscine_final\svgfile.cpp
 	"svgfile.h"
 	<iostream>
 	<sstream>

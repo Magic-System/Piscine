@@ -6,39 +6,49 @@
 #include "arete.h"
 #include "svgfile.h"
 
+class Solutions;
 
 class Graphe
 {
-    public:
-        ///constructeur qui charge le graphe en mémoire
-        //format du fichier ordre/liste des sommets/taille/liste des arêtes
-        Graphe(std::string, std::string);
+public:
+    ///constructeur qui charge le graphe en mémoire
+    //format du fichier ordre/liste des sommets/taille/liste des arêtes
+    Graphe(std::string, std::string);
+    Graphe(std::vector<Arete*> aretes, std::vector<Sommet*> sommets);
+    Graphe() {};
+    void afficher() const;
+    std::vector<std::vector<bool>> sol_admissible(bool cycle);
+    //void frontierePareto(std::vector<std::vector<bool>>)    const;
+    //void prim(std::string id = "0", int indicePoids = 0) const;
+    std::vector<Arete*> prim(std::string id = "0", int indicePoids = 0) const;
+    void afficherPrim(std::vector<Arete*>);
+    void afficherPrim(const Graphe,Svgfile &svgout) const;
+    bool rech_connexe(std::vector<bool>) const;
+    std::string parcoursBFS()   const;
+    void dessinerGraph() const;
+    void dessinerGraphSVG(Svgfile &svgout,int posx, int posy) const;
+    std::vector<Arete*> getArete() const;
+    std::vector<Solutions> calculCout(std::vector<std::vector<bool>> solutions);
+    void afficherDijkstra();
+    std::vector<Sommet*> getm_sommets()const;
+    std::map<Sommet*,float> dijkstra(Sommet *initial,int indicepoids);
+    std::vector<Graphe> transformation(std::vector<std::vector<bool>> solutions);
+    ~Graphe();
 
-        void afficher() const;
-        void dessinerGraphSVG(Svgfile &svgout) const;
-        void dessinerGraph() const;
+protected:
+    /// Le réseau est constitué d'une collection de sommets
+    std::vector<Sommet*> m_sommets;
+    std::vector<Arete*> m_aretes;
 
-        int getOrdre() const
-        {
-          return (int)m_sommets.size();
-        }
-        //void prim(std::string id = "0", int indicePoids = 0) const;
-        std::vector<Arete*> prim(std::string id = "0", int indicePoids = 0) const;
-        void afficherPrim(const std::vector<Arete*>) const;
 
-        ~Graphe();
+private:
 
-    protected:
-
-    private:
-        /// Le réseau est constitué d'une collection de sommets
-        std::vector<Sommet*> m_sommets;
-        std::vector<Arete*> m_aretes;
-
-        //std::unordered_map<std::string,Sommet*> m_sommets;//stockée dans une map (clé=id du sommet, valeur= pointeur sur le sommet)
+    //std::unordered_map<std::string,Sommet*> m_sommets;//stockée dans une map (clé=id du sommet, valeur= pointeur sur le sommet)
 
 };
 
-void SVGgraph(Svgfile &svgout, float cout1, float cout2);
+void SVGrepere(Svgfile &svgout);
+std::vector<Solutions> CalculDijkstra(std::vector<Graphe> G);
+
 
 #endif // GRAPHE_H

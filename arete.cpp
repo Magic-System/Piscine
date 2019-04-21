@@ -8,6 +8,20 @@ Arete::Arete(std::string id, Sommet* s1, Sommet* s2, std::vector<float> poids) :
         m_poids.push_back(elem);
 }
 
+void Arete::dessinerArete(Svgfile &svgout,int posy)  const
+{
+    int x1 = m_sommet1->getx();
+    int y1 = m_sommet1->gety();
+    int x2 = m_sommet2->getx();
+    int y2 = m_sommet2->gety();
+    //Ligne arete
+    svgout.addLine(x1, y1+posy, x2, y2+posy, 2, "green");
+    //Texte poids arete
+    svgout.addText((x1+x2)/2,(y1+y2)/2,m_poids[0], "green");
+    svgout.addText((x1+x2)/2+7,(y1+y2)/2,";", "green");
+    svgout.addText((x1+x2)/2+10,(y1+y2)/2,m_poids[1], "green");
+}
+
 std::string Arete::getId()  const
 {
     return m_id;
@@ -37,6 +51,7 @@ void Arete::afficherArete() const
     std::cout << std::endl;
 
 }
+
 
 Arete::~Arete()
 {
