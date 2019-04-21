@@ -9,48 +9,50 @@ Solutions::Solutions(std::vector<Arete*> aretes, std::vector<Sommet*> sommets) :
 Solutions::Solutions()
 {}
 
-void Solutions::SVGpoint(Svgfile &svgout,std::string color,int echelle)
+void Solutions::SVGpoint(Svgfile &svgout,std::string color,int echelle, int cpt)
 {
     switch(echelle)
     {
-     case 0 : if (color == "red")svgout.addDisk(5*m_coutT1+50,350-m_coutT2*5,1,color);
-              if (color == "green")svgout.addDisk(5*m_coutT1+50,350-m_coutT2*5,2.5,color);
+     case 0 : if (color == "red")svgout.addDisk(5*m_coutT1+50,350-m_coutT2*5,1,color, std::to_string(cpt));
+              if (color == "green")svgout.addDisk(5*m_coutT1+50,350-m_coutT2*5,2.5,color, std::to_string(cpt));
               break;
-     case 1 :  if (color == "red")svgout.addDisk(6.5*m_coutT1+50,350-m_coutT2,1,color);
-              if (color == "green")svgout.addDisk(6.5*m_coutT1+50,350-m_coutT2,2.5,color);
+     case 1 :  if (color == "red")svgout.addDisk(6.5*m_coutT1+50,350-m_coutT2,1,color, std::to_string(cpt));
+              if (color == "green")svgout.addDisk(6.5*m_coutT1+50,350-m_coutT2,2.5,color, std::to_string(cpt));
               break;
-     case 2 : if (color == "red")svgout.addDisk(4*m_coutT1+50,350-m_coutT2/4,1,color);
-              if (color == "green")svgout.addDisk(4*m_coutT1+50,350-m_coutT2/4,2.5,color);
+     case 2 : if (color == "red")svgout.addDisk(4*m_coutT1+50,350-m_coutT2/4,1,color, std::to_string(cpt));
+              if (color == "green")svgout.addDisk(4*m_coutT1+50,350-m_coutT2/4,2.5,color, std::to_string(cpt));
               break;
-     case 3 : if (color == "red")svgout.addDisk(3*m_coutT1+50,350-m_coutT2/8,1,color);
-              if (color == "green")svgout.addDisk(3*m_coutT1+50,350-m_coutT2/8,2.5,color);
+     case 3 : if (color == "red")svgout.addDisk(3*m_coutT1+50,350-m_coutT2/8,1,color, std::to_string(cpt));
+              if (color == "green")svgout.addDisk(3*m_coutT1+50,350-m_coutT2/8,2.5,color, std::to_string(cpt));
               break;
-     case 4 : if (color == "red")svgout.addDisk(2*m_coutT1+50,350-m_coutT2/24,1,color);
-              if (color == "green")svgout.addDisk(2*m_coutT1+50,350-m_coutT2/24,2.5,color);
+     case 4 : if (color == "red")svgout.addDisk(2*m_coutT1+50,350-m_coutT2/24,1,color, std::to_string(cpt));
+              if (color == "green")svgout.addDisk(2*m_coutT1+50,350-m_coutT2/24,2.5,color, std::to_string(cpt));
               break;
     }
 }
 
+/*
 void toutDessiner(std::vector<Solutions> tabSolus,Svgfile &svgout ,int echelle)
 {
     for(unsigned int i=0; i<tabSolus.size(); ++i)
     {
-        tabSolus[i].SVGpoint(svgout,"green", echelle);
+        tabSolus[i].SVGpoint(svgout,"green", echelle, );
     }
 }
+*/
 
 void dessinerPareto( std::unordered_map<float,Solutions> CombinaisonsForte,std::unordered_map<float,Solutions> CombinaisonsFaible,Svgfile &svgout,int echelle)
 {
     for(auto it2 = CombinaisonsFaible.begin(); it2!= CombinaisonsFaible.end(); it2++)
     {
-        it2->second.SVGpoint(svgout,"red", echelle);
+        it2->second.SVGpoint(svgout,"red", echelle, 0);
     }
     std::cout <<"Voici les aretes presentes dans combinaisonsForte "<< std::endl;
     int compteur =1;
     for(auto it1 = CombinaisonsForte.begin(); it1!= CombinaisonsForte.end(); it1++)
     {
         std::cout<<"Combinaison n" <<compteur<<" ----> "<< " cout 1: " << it1->second.getCout1() << " et cout 2: " << it1->second.getCout2() << std::endl;
-        it1->second.SVGpoint(svgout,"green", echelle);
+        it1->second.SVGpoint(svgout,"green", echelle, compteur);
         compteur++;
     }
 }

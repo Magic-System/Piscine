@@ -106,8 +106,6 @@ Graphe::Graphe(std::string nomFichier, std::string fichierPoids)
     }
 }
 
-
-
 void Graphe::afficher() const
 {
     std::cout<<"Graphe : "<<m_sommets.size()<<std::endl;
@@ -325,7 +323,6 @@ void Graphe::dessinerGraph() const
     }
 }
 
-
 void Graphe::dessinerGraphSVG(Svgfile &svgout,int posx, int posy) const
 {
     double x1;
@@ -338,7 +335,7 @@ void Graphe::dessinerGraphSVG(Svgfile &svgout,int posx, int posy) const
            y1=val2->getSommet(0)->gety();
            x2=val2->getSommet(1)->getx();
            y2=val2->getSommet(1)->gety();
-           svgout.addLine(x1+posx, y1+posy, x2+posx, y2+posy, "red");
+           svgout.addLine(x1+posx, y1+posy, x2+posx, y2+posy, "red", "");
            svgout.addText((x1+x2)/2 +posx,(y1+y2)/2 +posy ,val2->getPoids()[0], "green");
            svgout.addText((x1+x2)/2+7+posx,(y1+y2)/2 +posy,";", "green");
            svgout.addText((x1+x2)/2+10+posx,(y1+y2)/2 +posy,val2->getPoids()[1], "green");
@@ -350,6 +347,7 @@ void Graphe::dessinerGraphSVG(Svgfile &svgout,int posx, int posy) const
              svgout.addText(val->getx()-2.5+posx, val->gety()+2.5+posy, val->getId(), "white");
        }
 }
+
 /*void Graphe::dessinerGraphSVG(Svgfile &svgout,int posy) const
 {
     for (auto elem : m_aretes)
@@ -429,7 +427,6 @@ std::vector<Solutions> Graphe::calculCout(std::vector<std::vector<bool>> solutio
 
     return tabSolus;
 }
-
 
 std::map<Sommet*,float> Graphe::dijkstra(Sommet *initial,int indicepoids)
 {

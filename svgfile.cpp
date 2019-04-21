@@ -4,7 +4,7 @@
 
 const std::string svgHeader =
     "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
-    "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" ";
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" ";
 
 const std::string svgEnding = "\n\n</svg>\n";
 
@@ -114,9 +114,10 @@ void Svgfile::addRadialGradient(std::string id, double cx, double cy, double r, 
     }
 }
 
-void Svgfile::addDisk(double x, double y, double r, std::string color)
+void Svgfile::addDisk(double x, double y, double r, std::string color, std::string id)
 {
     m_ostrm << "<circle "
+            << attrib("id", id)
             << attrib("cx", x)
             << attrib("cy", y)
             << attrib("r",  r);
@@ -284,7 +285,7 @@ void Svgfile::addPath(std::string path, std::string colorFill)
     m_ostrm << "\" />\n";
 }
 
-void Svgfile::addLine(double x1, double y1, double x2, double y2, std::string color)
+void Svgfile::addLine(double x1, double y1, double x2, double y2, std::string color, std::string id, int opacity)
 {
     m_ostrm << "<line "
             << attrib("x1", x1)
@@ -298,7 +299,7 @@ void Svgfile::addLine(double x1, double y1, double x2, double y2, std::string co
     m_ostrm << "/>\n";
 }
 
-void Svgfile::addLine(double x1, double y1, double x2, double y2, double thickness, std::string color)
+void Svgfile::addLine(double x1, double y1, double x2, double y2, double thickness, std::string color, std::string id, int opacity)
 {
     m_ostrm << "<line "
             << attrib("x1", x1)
@@ -319,7 +320,7 @@ void Svgfile::addCross(double x, double y, double span, std::string color)
     addLine(x-span, y+span, x+span, y-span, color);
 }
 
-void Svgfile::addText(double x, double y, std::string text, std::string color)
+void Svgfile::addText(double x, double y, std::string text, std::string color, int opacity)
 {
     /// <text x="180" y="60">Un texte</text>
     m_ostrm << "<text "
@@ -329,7 +330,7 @@ void Svgfile::addText(double x, double y, std::string text, std::string color)
             << ">" << text << "</text>\n";
 }
 
-void Svgfile::addText(double x, double y, double val, std::string color)
+void Svgfile::addText(double x, double y, double val, std::string color, int opacity)
 {
     std::ostringstream oss;
     oss << val;
@@ -355,6 +356,13 @@ void Svgfile::addGrid(double span, bool numbering, std::string color)
             addText(x+5, 15, x, color);
         x+=span;
     }
+}
+
+void Svgfile::addAnimationOpacite(std::string idObj, std::string idBegin)
+{
+    m_ostrm << "<animate attributName=\"opacity\" from=\"o\" to=\"1\" dur=\"2s\" "
+            << "xlink:href=\"#" << idObj << "\""
+            << "begin=\"" << idBegin << ".mouseover\" />";
 }
 
 std::string Svgfile::makeRGB(int r, int g, int b)

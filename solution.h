@@ -16,7 +16,7 @@ public:
     Solutions(std::vector<Arete*> aretes, std::vector<Sommet*> sommets);
     Solutions();
     ~Solutions() {};
-    void SVGpoint(Svgfile &svgout,std::string color,int echelle);
+    void SVGpoint(Svgfile &svgout,std::string color,int echelle, int cpt);
     float getCout1();
     float getCout2();
     void afficher();

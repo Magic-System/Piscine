@@ -472,3 +472,88 @@
 	<iostream>
 	<sstream>
 
+1555881205 source:c:\users\taurloc\desktop\projet piscine\piscine-master\arete.cpp
+	"arete.h"
+	<iostream>
+	<vector>
+
+1555881205 c:\users\taurloc\desktop\projet piscine\piscine-master\arete.h
+	"sommet.h"
+	"svgfile.h"
+
+1555881205 c:\users\taurloc\desktop\projet piscine\piscine-master\sommet.h
+	<string>
+	<vector>
+	<unordered_map>
+	<unordered_set>
+	"svgfile.h"
+
+1555886735 c:\users\taurloc\desktop\projet piscine\piscine-master\svgfile.h
+	<string>
+	<fstream>
+	<set>
+	<vector>
+	<map>
+
+1555886632 source:c:\users\taurloc\desktop\projet piscine\piscine-master\graphe.cpp
+	<fstream>
+	<iostream>
+	<bitset>
+	<math.h>
+	"graphe.h"
+	"solution.h"
+	<map>
+
+1555886632 c:\users\taurloc\desktop\projet piscine\piscine-master\graphe.h
+	<string>
+	<unordered_map>
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+
+1555886806 c:\users\taurloc\desktop\projet piscine\piscine-master\solution.h
+	<string>
+	<iostream>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+	"graphe.h"
+	"arete.h"
+	"svgfile.h"
+
+1555881205 source:c:\users\taurloc\desktop\projet piscine\piscine-master\main.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+
+1555882119 source:c:\users\taurloc\desktop\projet piscine\piscine-master\menu.cpp
+	<iostream>
+	"graphe.h"
+	"sommet.h"
+	"arete.h"
+	"svgfile.h"
+	"solution.h"
+	<math.h>
+	"windows.h"
+
+1555886890 source:c:\users\taurloc\desktop\projet piscine\piscine-master\solution.cpp
+	"solution.h"
+
+1555881205 source:c:\users\taurloc\desktop\projet piscine\piscine-master\sommet.cpp
+	<iostream>
+	<queue>
+	<stack>
+	<utility>
+	<unordered_map>
+	<unordered_set>
+	"sommet.h"
+
+1555886743 source:c:\users\taurloc\desktop\projet piscine\piscine-master\svgfile.cpp
+	"svgfile.h"
+	<iostream>
+	<sstream>
+
